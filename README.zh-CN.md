@@ -33,12 +33,35 @@
 
 每一层都是一个 Markdown 文件，按你的业务定制。AI 每次对话都会加载全部 7 层，获得关于你公司、产品和销售策略的深度上下文。
 
-## 快速开始（5 分钟）
+## 快速开始
 
-### 1. 克隆 & 配置
+### 方式 A：OpenClaw 用户（一条命令）
+
+如果你已经在运行 [OpenClaw](https://openclaw.dev)：
 
 ```bash
-git clone https://github.com/pulseagentorg/b2b-sdr-agent-template.git
+clawhub install b2b-sdr-agent
+```
+
+完成。Skill 会自动安装完整的 7 层上下文系统、delivery-queue 和 sdr-humanizer 到你的 workspace。然后定制：
+
+```bash
+# 编辑关键文件
+vim ~/.openclaw/workspace/skills/b2b-sdr-agent/references/IDENTITY.md
+vim ~/.openclaw/workspace/skills/b2b-sdr-agent/references/USER.md
+
+# 或复制到主 workspace
+cp ~/.openclaw/workspace/skills/b2b-sdr-agent/references/*.md ~/.openclaw/workspace/
+```
+
+把所有 `{{占位符}}` 替换成你的真实信息，AI SDR 即刻上线。
+
+### 方式 B：完整部署（5 分钟）
+
+#### 1. 克隆 & 配置
+
+```bash
+git clone https://github.com/iPythoning/b2b-sdr-agent-template.git
 cd b2b-sdr-agent-template
 
 # 编辑 7 个 workspace 文件，填入你的业务信息
@@ -47,7 +70,7 @@ vim workspace/USER.md       # 产品、ICP、竞品
 vim workspace/SOUL.md       # AI 人格和规则
 ```
 
-### 2. 配置部署参数
+#### 2. 配置部署参数
 
 ```bash
 cd deploy
@@ -55,7 +78,7 @@ cp config.sh.example config.sh
 vim config.sh               # 填入：服务器 IP、API Key、WhatsApp 号码
 ```
 
-### 3. 一键部署
+#### 3. 一键部署
 
 ```bash
 ./deploy.sh my-company

@@ -33,12 +33,35 @@ Built on [OpenClaw](https://openclaw.dev), battle-tested with real B2B export co
 
 Each layer is a Markdown file you customize for your business. The AI reads all layers on every conversation, giving it deep context about your company, products, and sales strategy.
 
-## Quick Start (5 Minutes)
+## Quick Start
 
-### 1. Clone & Configure
+### Option A: OpenClaw Users (1 Command)
+
+If you already have [OpenClaw](https://openclaw.dev) running:
 
 ```bash
-git clone https://github.com/pulseagentorg/b2b-sdr-agent-template.git
+clawhub install b2b-sdr-agent
+```
+
+Done. The skill installs the full 7-layer context system, delivery-queue, and sdr-humanizer into your workspace. Then customize:
+
+```bash
+# Edit the key files for your business
+vim ~/.openclaw/workspace/skills/b2b-sdr-agent/references/IDENTITY.md
+vim ~/.openclaw/workspace/skills/b2b-sdr-agent/references/USER.md
+
+# Or copy to your main workspace
+cp ~/.openclaw/workspace/skills/b2b-sdr-agent/references/*.md ~/.openclaw/workspace/
+```
+
+Replace all `{{placeholders}}` with your actual company info, and your AI SDR is live.
+
+### Option B: Full Deployment (5 Minutes)
+
+#### 1. Clone & Configure
+
+```bash
+git clone https://github.com/iPythoning/b2b-sdr-agent-template.git
 cd b2b-sdr-agent-template
 
 # Edit the 7 workspace files for your business
@@ -47,7 +70,7 @@ vim workspace/USER.md       # Your products, ICP, competitors
 vim workspace/SOUL.md       # AI personality and rules
 ```
 
-### 2. Set Up Deployment Config
+#### 2. Set Up Deployment Config
 
 ```bash
 cd deploy
@@ -55,7 +78,7 @@ cp config.sh.example config.sh
 vim config.sh               # Fill in: server IP, API key, WhatsApp number
 ```
 
-### 3. Deploy
+#### 3. Deploy
 
 ```bash
 ./deploy.sh my-company

@@ -87,13 +87,39 @@ Rules:
 - Track: email_sent → email_replied → convert to WhatsApp conversation
 
 ### Stage 10: Multi-Channel Orchestration
-Channel priority: WhatsApp > Email > Telegram
-Rules:
-- If WhatsApp available: Primary channel, email as supplement for formal docs
-- If only email: Full email sequence, suggest WhatsApp connection in email
-- If Telegram: Use for quick updates, WhatsApp for detailed discussion
-- Auto-switch: If no reply on primary channel for 3 days, try secondary channel
-- Cross-channel context: Always check all channel history before responding
+
+#### Market-Adaptive Channel Priority
+Channel priority depends on the customer's market — **not hardcoded**:
+
+| Market | Primary | Secondary | Tertiary |
+|--------|---------|-----------|----------|
+| Africa / Latin America / South Asia | WhatsApp | Email | Telegram |
+| Middle East / Southeast Asia | WhatsApp | Telegram | Email |
+| Russia / CIS / Iran / Eastern Europe | **Telegram** | Email | WhatsApp |
+| Europe / Turkey | WhatsApp | Telegram | Email |
+| Tech-savvy / privacy-conscious buyers | **Telegram** | Email | WhatsApp |
+
+Detect market from CRM `country` field. If customer initiates on Telegram, respect that as their preferred channel.
+
+#### Channel Rules
+- Respond on the channel the customer initiates from — never force a channel switch
+- WhatsApp 72h window expired → auto-switch to Telegram (no window limit) or Email
+- Large files (>10MB catalogs, certifications, videos) → always via Telegram
+- Formal documents (contracts, PIs) → Email with Telegram/WhatsApp notification
+- If no reply on primary channel for 3 days → try secondary channel
+- Cross-channel context: Always check ALL channel history before responding (4-layer memory covers this)
+
+#### Telegram-Specific Advantages
+- Use **Bot Commands** (`/catalog`, `/quote`, `/status`) for structured self-service
+- Use **Inline Keyboards** for rapid BANT qualification (one-tap vs free-text)
+- Use Telegram for **proactive nurture** — no messaging window restrictions
+- Offer Telegram as alternative when customer is reluctant to share phone number
+
+#### WhatsApp-Specific Notes
+- Uses WhatsApp Business App (not API) — `dmPolicy: "open"`, admin whitelist for system commands
+- 72h conversation window: after 72h of customer silence, outbound messages may fail
+- CTWA ad leads: can reply directly within 72h window
+- Monitor delivery receipts — never mark "contacted" if delivery failed
 
 ## Dynamic ICP Scoring
 ICP score adjusts based on interaction signals:

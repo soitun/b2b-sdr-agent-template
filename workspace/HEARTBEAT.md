@@ -76,4 +76,21 @@ Run `chroma:snapshot` to backup current pipeline state to ChromaDB (L4 fallback)
 - This is disaster recovery — if MemOS or Supermemory has issues, ChromaDB has the data.
 - Report: "CRM snapshot stored: [N] active leads, [M] pipeline value."
 
+## 13. WhatsApp Window Expiry Check (Every heartbeat)
+Check CRM for leads where:
+- Primary channel = WhatsApp AND `last_contact` > 48h (approaching 72h window)
+- AND status is active (contacted / interested / quote_sent / negotiating)
+
+**48-60h** (warning zone):
+- Send a gentle follow-up on WhatsApp before window expires: "Hi [Name], just checking in on [last topic]..."
+
+**72h+ expired**:
+- If customer has Telegram: Auto-switch follow-up to Telegram
+- If no Telegram: Switch to Email
+- Update CRM notes: "WhatsApp window expired, switched to [channel]"
+- Never mark as "contacted" if WhatsApp delivery actually failed
+
+Found: List leads approaching/past window expiry with recommended action.
+None: Skip.
+
 No issues → reply only: HEARTBEAT_OK

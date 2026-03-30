@@ -20,13 +20,13 @@ Built on [OpenClaw](https://openclaw.dev), battle-tested with real B2B export co
 │  SOUL.md       → Personality, values, rules     │
 │  AGENTS.md     → Full sales workflow (10 stages)│
 │  USER.md       → Owner profile, ICP, scoring    │
-│  HEARTBEAT.md  → 12-item pipeline inspection    │
+│  HEARTBEAT.md  → 13-item pipeline inspection    │
 │  MEMORY.md     → 4-layer anti-amnesia protocol  │
 │  TOOLS.md      → CRM, channels, integrations    │
 ├─────────────────────────────────────────────────┤
 │  Skills        → Extensible capabilities        │
 │  Product KB    → Your product catalog           │
-│  Cron Jobs     → 12 automated scheduled tasks   │
+│  Cron Jobs     → 13 automated scheduled tasks   │
 ├─────────────────────────────────────────────────┤
 │  OpenClaw Gateway (WhatsApp / Telegram / Email) │
 └─────────────────────────────────────────────────┘
@@ -110,7 +110,7 @@ That's it. Your AI SDR is live on WhatsApp and ready to sell.
 | **9. Email Outreach** | Personalized cold email sequences (Day 1/3/7/14), auto follow-up |
 | **10. Multi-Channel Orchestration** | Cross-channel coordination (WhatsApp + Email + Telegram), auto-switching |
 
-### Automated Scheduling (12 Cron Jobs)
+### Automated Scheduling (13 Cron Jobs)
 
 | Schedule | Task |
 |----------|------|
@@ -124,6 +124,7 @@ That's it. Your AI SDR is live on WhatsApp and ready to sell.
 | Weekly Mon | Weekly summary report |
 | Daily 12:00 | CRM snapshot to ChromaDB (L4 disaster recovery) |
 | Daily 14:00 | Memory health check (Supermemory + ChromaDB stats) |
+| Every 30 min | WhatsApp 72h window expiry check → auto-switch to Telegram |
 
 ### Human-Like Conversations
 - Responds in the customer's language (auto-detected)
@@ -183,6 +184,7 @@ Pre-built capabilities that extend your AI SDR:
 | **delivery-queue** | Schedule messages with human-like delays. Drip campaigns, timed follow-ups. |
 | **supermemory** | Semantic memory engine. Store research notes, competitor intel, market insights. |
 | **chroma-memory** | Per-turn conversation storage with customer isolation, auto-tagging, and CRM snapshots. |
+| **telegram-toolkit** | Bot commands, inline keyboards, large file handling, and Telegram-first market strategies. |
 | **sdr-humanizer** | Rules for natural conversation — pacing, cultural adaptation, anti-patterns. |
 | **lead-discovery** | AI-driven lead discovery. Web search for potential buyers, ICP evaluation, CRM auto-entry. |
 | **quotation-generator** | Auto-generate PDF proforma invoices with company letterhead, multi-language support. |

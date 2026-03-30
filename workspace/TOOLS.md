@@ -14,15 +14,15 @@ gws sheets spreadsheets.values append --params '{"spreadsheetId":"{{sheets_id}}"
 ```
 Only use append and update — never overwrite entire rows.
 
-## WhatsApp (Primary Conversation Channel)
+## WhatsApp Business App (Primary Conversation Channel)
 AI directly replies to customer inquiries — no human relay.
 Channel policy: `dmPolicy: "open"`, `allowFrom: ["*"]` — accept all contacts.
-CTWA ad leads can be replied to directly (72-hour conversation window).
+Admin whitelist controls system commands; all other contacts get normal sales conversation.
 
 ### 72-Hour Window Handling
-WhatsApp Business API restricts outbound messages after 72h of customer inactivity:
+WhatsApp restricts outbound messages after 72h of customer inactivity:
 1. Before sending, check: `now() - last_customer_message < 72h`
-2. If expired: Switch to email channel or notify owner for manual WhatsApp contact
+2. If expired: **Auto-switch to Telegram** (no window limit) or email. See HEARTBEAT #13.
 3. Never mark CRM as "contacted" if message delivery actually failed
 4. Implement delivery receipt verification — check for sent/delivered/read status
 
@@ -31,8 +31,65 @@ Web UI for monitoring bot status, conversations, and cron jobs.
 Access: `http://SERVER_IP:{{gateway_port}}/?token={{gateway_token}}`
 Gateway bind: `lan` (network accessible). Change to `loopback` for localhost-only.
 
-## Telegram (Secondary Channel)
-Quick updates, document sharing. Use WhatsApp for detailed discussion.
+## Telegram (Strategic Channel — No Window Limits)
+Telegram has **zero messaging restrictions** — unlike WhatsApp's 72h window, you can proactively message any customer at any time. This makes it the best channel for follow-ups, nurture, and markets where Telegram is dominant.
+
+### Channel Strengths
+- **No 72h window**: Proactive outreach anytime (nurture, follow-ups, stalled leads)
+- **Files up to 2GB**: Full product catalogs, certifications, test reports, video demos
+- **Bot Commands**: Structured self-service for customers (`/catalog`, `/quote`, `/status`)
+- **Inline Keyboards**: One-tap BANT qualification, faster than typing
+- **Username-based**: Customer doesn't expose phone number — lower barrier to connect
+- **Free API**: No per-message cost unlike WhatsApp Business API
+
+### Bot Commands (auto-registered)
+| Command | Action |
+|---------|--------|
+| `/start` | Welcome message + language detection + CRM record creation |
+| `/catalog` | Send product catalog PDF or product line summary |
+| `/quote` | Start quotation flow → trigger BANT collection via inline keyboards |
+| `/status` | Check order/quote status from CRM |
+| `/contact` | Request human sales rep → notify owner |
+| `/language` | Switch conversation language |
+
+### Inline Keyboard Templates
+Use inline keyboards for structured qualification — 3-5x faster than free-text BANT:
+
+**Order Volume:**
+```
+[< 100 units] [100-500] [500-1000] [1000+]
+```
+
+**Timeline:**
+```
+[This month] [1-3 months] [3-6 months] [Just exploring]
+```
+
+**Product Interest:**
+```
+[{{product_1}}] [{{product_2}}]
+[{{product_3}}] [View full catalog]
+```
+
+### Large File Strategy
+| File Type | Size | Channel |
+|-----------|------|---------|
+| Quick quote (1-2 pages) | < 10MB | WhatsApp or Telegram |
+| Full product catalog | 10-100MB | **Telegram only** |
+| Certification documents | 10-50MB | **Telegram only** |
+| Video demos | 50MB-2GB | **Telegram only** |
+| Contracts / PIs | < 10MB | Email (formal) + Telegram (fast copy) |
+
+When sending large files: "I'll share the full catalog on Telegram — it's [X]MB, too large for WhatsApp."
+
+### Market Priority
+Telegram is the **primary** channel (not secondary) in these markets:
+- **Russia / CIS**: Telegram is THE messaging app
+- **Iran**: Telegram dominant for business
+- **Eastern Europe**: Strong Telegram adoption
+- **Tech-savvy buyers globally**: Many prefer Telegram for business
+
+See AGENTS.md Stage 10 for market-adaptive channel priority rules.
 
 ## Gmail (Email Outreach + Inbox Monitoring)
 Access via gws CLI:

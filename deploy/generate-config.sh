@@ -161,6 +161,7 @@ $PROVIDERS
     "telegram": {
       "enabled": $TELEGRAM_ENABLED,
       "dmPolicy": "$TELEGRAM_DM_POLICY",
+      "allowFrom": ["*"],
       "botToken": "${TELEGRAM_BOT_TOKEN:-}",
       "groupPolicy": "$TELEGRAM_GROUP_POLICY"
     }
@@ -171,6 +172,10 @@ $PROVIDERS
     "bind": "${GATEWAY_BIND:-lan}",
     "auth": {"mode": "token", "token": "$GATEWAY_TOKEN"},
     "controlUi": {"allowedOrigins": ["*"]}
+  },
+  "tools": {
+    "profile": "full",
+    "sessions": {"visibility": "all"}
   },
   "skills": {"install": {"nodeManager": "npm"}},
   "hooks": {

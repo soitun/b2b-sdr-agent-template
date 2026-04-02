@@ -127,7 +127,29 @@ if echo "$OPENCLAW_INSTALLED" | grep -q "NOT_INSTALLED"; then
   fi
 else
   log "OpenClaw already installed: $(echo "$OPENCLAW_INSTALLED" | tail -1)"
+  if [ "$INSTALL_OPENCLAW" = true ]; then
+    info "  Updating OpenClaw & refreshing gateway token..."
+    remote "npm install -g openclaw@latest 2>&1 | tail -3"
+    remote "openclaw gateway install --force 2>&1 | tail -3"
+    log "  OpenClaw updated, gateway token refreshed"
+  fi
 fi
+
+# Ensure exec-approvals are set to full (required since 2026.4.1)
+info "  Setting exec approvals to full..."
+remote "cat > /root/.openclaw/exec-approvals.json << 'EAEOF'
+{
+  \"version\": 1,
+  \"defaults\": {
+    \"security\": \"full\",
+    \"ask\": \"off\",
+    \"askFallback\": \"full\"
+  },
+  \"agents\": {}
+}
+EAEOF
+chmod 600 /root/.openclaw/exec-approvals.json"
+log "  Exec approvals configured (security=full)"
 
 # ─── Step 3: Check Node.js ───────────────────────────────
 info "Step 3/7: Checking Node.js..."

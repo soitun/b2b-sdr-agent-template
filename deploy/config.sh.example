@@ -45,7 +45,7 @@ WHATSAPP_DEBOUNCE_MS=5000
 # ─── Channel: Telegram ───────────────────────────────────
 TELEGRAM_ENABLED=false
 TELEGRAM_BOT_TOKEN=""       # Get from @BotFather
-TELEGRAM_DM_POLICY="pairing"
+TELEGRAM_DM_POLICY="open"
 TELEGRAM_GROUP_POLICY="open"
 
 # ─── Admin Whitelist (comma-separated) ───────────────────

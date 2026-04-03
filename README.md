@@ -305,6 +305,37 @@ SHEETS_SPREADSHEET_ID="your-google-sheets-id"
 ADMIN_PHONES="+1234567890"
 ```
 
+### WhatsApp IP Isolation (Multi-Tenant)
+
+When running multiple agents on the same server, each should have a unique exit IP so WhatsApp sees independent devices. This prevents cross-account flagging.
+
+```bash
+# After deploying a client, isolate their WhatsApp IP:
+./deploy/ip-isolate.sh acme-corp
+
+# Or with a specific SOCKS5 port:
+./deploy/ip-isolate.sh acme-corp 40010
+```
+
+**How it works:**
+
+```
+                  ┌─ wireproxy :40001 → WARP Account A → CF IP-A
+                  │    ↑
+tenant-a ─────────┘    ALL_PROXY=socks5://host:40001
+
+tenant-b ─────────┐    ALL_PROXY=socks5://host:40002
+                  │    ↓
+                  └─ wireproxy :40002 → WARP Account B → CF IP-B
+```
+
+Each tenant gets:
+- A dedicated free [Cloudflare WARP](https://1.1.1.1/) account
+- An isolated [wireproxy](https://github.com/pufferffish/wireproxy) instance (~4MB RAM)
+- A unique Cloudflare exit IP for all outbound traffic (including WhatsApp)
+
+To auto-enable during deploy, set `IP_ISOLATE=true` in `config.sh`.
+
 ### Managed Deployment
 
 Don't want to self-host? **[PulseAgent](https://ai.pulseagent.io)** offers fully managed B2B SDR agents with:

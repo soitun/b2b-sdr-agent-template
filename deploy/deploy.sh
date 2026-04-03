@@ -225,7 +225,7 @@ if [ "$AUTO_START" = true ]; then
 fi
 
 # ─── Step 7: Install Skills ──────────────────────────────
-info "Step 7/7: Installing Skills (profile: ${SKILL_PROFILE:-b2b_trade})..."
+info "Step 7/8: Installing Skills (profile: ${SKILL_PROFILE:-b2b_trade})..."
 
 source "$SCRIPT_DIR/skill-profiles.sh"
 SKILL_LIST=$(get_skills_for_profile "${SKILL_PROFILE:-b2b_trade}")
@@ -249,6 +249,15 @@ if [ -n "$SKILL_LIST" ] && [ "$SKILL_COUNT" -gt 0 ]; then
   log "  Skills installed"
 fi
 
+# ─── Step 8: IP Isolation (optional) ────────────────────
+if [ "${IP_ISOLATE:-false}" = true ]; then
+  info "Step 8/8: Setting up WhatsApp IP isolation..."
+  bash "$SCRIPT_DIR/ip-isolate.sh" "$CLIENT_NAME" "${IP_SOCKS_PORT:-}"
+  log "IP isolation active"
+else
+  info "Step 8/8: IP isolation skipped (set IP_ISOLATE=true to enable)"
+fi
+
 # ─── Done ─────────────────────────────────────────────────
 echo ""
 echo "═══════════════════════════════════════════════════════════"
@@ -261,6 +270,7 @@ echo "  Gateway Token:    ${GATEWAY_TOKEN:0:8}...${GATEWAY_TOKEN: -8} (full toke
 echo ""
 echo "  WhatsApp:         $( [ "$WHATSAPP_ENABLED" = true ] && echo 'Enabled' || echo 'Disabled' )"
 echo "  Telegram:         $( [ "$TELEGRAM_ENABLED" = true ] && echo 'Enabled' || echo 'Disabled' )"
+echo "  IP Isolation:     $( [ "${IP_ISOLATE:-false}" = true ] && echo 'Active (WARP proxy)' || echo 'Off (run ip-isolate.sh to enable)' )"
 echo "  Skills:           ${SKILL_PROFILE:-b2b_trade} ($SKILL_COUNT skills)"
 echo ""
 echo "  Commands:"

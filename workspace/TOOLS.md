@@ -42,6 +42,27 @@ Telegram has **zero messaging restrictions** — unlike WhatsApp's 72h window, y
 - **Username-based**: Customer doesn't expose phone number — lower barrier to connect
 - **Free API**: No per-message cost unlike WhatsApp Business API
 
+### Multi-Account Telegram Setup
+If you operate multiple Telegram bots (e.g., one per market or per product line), each account can have its own independent action configuration. Per-account settings correctly scope which features are available for each bot:
+
+```yaml
+# workspace/config example
+channels:
+  telegram:
+    botToken: "tok-default"          # default account
+    actions:
+      reactions: false
+      poll: true
+    accounts:
+      russia_sales:                   # account-scoped overrides
+        botToken: "tok-ru"
+        actions:
+          reactions: true             # enabled for this account only
+          poll: false
+```
+
+Account-level `actions` fully override the top-level defaults for that account — they do not merge. Verify your per-account gates during setup.
+
 ### Bot Commands (auto-registered)
 | Command | Action |
 |---------|--------|
@@ -135,6 +156,27 @@ Semantic memory for research notes, competitor intel, and market insights.
 - Query before every outreach for relevant context
 - Tags: customer_fact, competitor_intel, effective_tactic, market_signal
 - Commands: `memory:add`, `memory:search`, `memory:list`, `memory:stats`
+
+## AI Model Provider (LLM Backend)
+OpenClaw supports multiple AI model providers. The recommended provider is Claude (Anthropic), but the following are also fully supported as drop-in alternatives:
+
+| Provider | API Type | Notes |
+|----------|----------|-------|
+| Anthropic (Claude) | Native | Default — recommended |
+| OpenAI | openai-responses | GPT-4o, o3, etc. |
+| Mistral | openai-completions | Full compat as of 2026-04-03 — use `api: openai-completions`, `provider: mistral` |
+| Groq | openai-completions | Fast inference |
+| Custom / self-hosted | openai-completions | Point `baseUrl` to your endpoint |
+
+**Mistral-specific notes:** OpenClaw now correctly uses `max_tokens` (not `max_completion_tokens`) and disables unsupported OpenAI-specific params (`store`, `reasoning_effort`) when the provider is Mistral or the `baseUrl` points to `api.mistral.ai`. This fix applies automatically — no manual config needed.
+
+Set your model in the OpenClaw workspace config:
+```yaml
+model:
+  id: "mistral-large-latest"
+  provider: "mistral"
+  api: "openai-completions"
+```
 
 ## ChromaDB (Conversation History — L3 + L4)
 Per-turn vector store with customer_id isolation and auto-tagging.

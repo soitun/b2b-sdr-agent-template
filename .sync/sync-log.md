@@ -1,5 +1,16 @@
 # Upstream Sync Log
 
+## 2026-04-03
+- New commits: 14 (RELEVANT: 2, WATCH: 3, SKIP: 9)
+- Changes adapted:
+  - Telegram per-account action discovery fix → added Multi-Account Telegram Setup guide to workspace/TOOLS.md
+  - Mistral AI provider transport compat → added AI Model Provider reference table to workspace/TOOLS.md
+  - Created CHANGELOG.md
+- Blog published: drafts saved to .sync/blog-drafts/ (slug: openclaw-upstream-sync-2026-04-03)
+  - NOTE: pulseagent-portal not accessible via current session auth — publish manually
+  - Target URLs: https://pulseagent.io/blog/openclaw-upstream-sync-2026-04-03 (en) / https://pulseagent.io/zh/blog/openclaw-upstream-sync-2026-04-03 (zh)
+- Sync SHA advanced: 0b4cdfc53e974c67fbe92dc497be57aaf1a44ccb → 6ac5806a3957d0fb31e8542ee4fc04315bfdad5d
+
 ## 2026-04-04 — Initial Setup
 - Added `upstream` remote: https://github.com/openclaw/openclaw.git
 - Baseline commit: `fb4127082aee18d955fb67cf64341de8db2a5d5a`

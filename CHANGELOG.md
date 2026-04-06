@@ -8,6 +8,50 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-06 — OpenClaw v2026.4.5 upstream sync
+
+### Breaking Changes (run `openclaw doctor --fix`)
+- **Legacy config aliases removed** — The following keys are no longer recognized at load time:
+  - `talk.voiceId` / `talk.apiKey` → use canonical `voice.*` paths
+  - `agents.*.sandbox.perSession` → use `sandbox.*` canonical paths
+  - `browser.ssrfPolicy.allowPrivateNetwork`
+  - `hooks.internal.handlers`
+  - Channel/group/room `allow` toggles
+  
+  Run `openclaw doctor --fix` to auto-migrate. Backward compat shims remain active during the transition period.
+
+### Fixed
+- **WhatsApp: `blockStreaming` config option restored**
+  The `blockStreaming` option (disables streaming responses on WhatsApp) was inadvertently removed in a prior release. Now restored. No config change needed — existing `blockStreaming: true` configs will work again.
+  Upstream: v2026.4.5
+
+- **Telegram: model picker checks and HTML formatting restored**
+  Non-default model confirmations now correctly show the model name in HTML-formatted messages. DM voice-note transcription restored. Reaction persistence fixed across gateway restarts.
+  Upstream: v2026.4.5
+
+- **Security: plugin allowlists and `/allowlist` access controls hardened**
+  Plugin-only tool allowlists are now properly preserved between restarts. `/allowlist add` and `/allowlist remove` now require owner access. Canvas bridge actions require exact normalized URL matches.
+  Upstream: v2026.4.5
+
+### Added
+- **Multilingual Control UI (12 languages)**
+  The OpenClaw control dashboard and mobile UI are now localized for Simplified Chinese, Traditional Chinese, Brazilian Portuguese, German, Spanish, Japanese, Korean, French, Turkish, Indonesian, Polish, and Ukrainian. Operators in China, Japan, Korea, and LATAM can now manage the SDR agent in their native language.
+  Upstream: v2026.4.5
+
+- **New AI providers: Qwen, Fireworks AI, StepFun, MiniMax**
+  Four new bundled providers are now available as drop-in LLM backends. Qwen and MiniMax are particularly relevant for China-based deployments. Add to `workspace/TOOLS.md` provider table.
+  Upstream: v2026.4.5
+
+- **`openclaw status --verbose`** — New diagnostic flag showing prompt cache reuse statistics. Useful for debugging latency or unexpected API costs.
+  Upstream: v2026.4.5
+
+- **`openclaw plugins install --force`** — Allows replacing an existing installed plugin without manual removal. Useful for development workflows.
+  Upstream: v2026.4.5
+
+### Documentation
+- Updated `workspace/TOOLS.md`: WhatsApp `blockStreaming` note, expanded AI provider table (Qwen, Fireworks, StepFun, MiniMax)
+- Updated `deploy/UPGRADE.md`: v2026.4.5 breaking changes and migration steps
+
 ## 2026-04-05 — v3.4.0
 
 ### Added

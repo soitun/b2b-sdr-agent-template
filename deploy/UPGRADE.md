@@ -80,6 +80,13 @@ openclaw gateway restart
 
 ## Known Issues by Version
 
+### 2026.4.5
+
+| Issue | Symptom | Fix |
+|-------|---------|-----|
+| Legacy config aliases removed | Startup warning: `unknown config key: talk.voiceId` (or `talk.apiKey`, `agents.*.sandbox.perSession`, `browser.ssrfPolicy.allowPrivateNetwork`, `hooks.internal.handlers`) | Run `openclaw doctor --fix` to auto-migrate to canonical paths |
+| Channel `allow` toggle removed | Warning about unrecognized `allow` field on channel/group/room config | Replace with `dmPolicy` + `allowFrom` — run `openclaw doctor --fix` |
+
 ### 2026.4.1
 
 | Issue | Symptom | Fix |

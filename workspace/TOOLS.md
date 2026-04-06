@@ -19,6 +19,17 @@ AI directly replies to customer inquiries — no human relay.
 Channel policy: `dmPolicy: "open"`, `allowFrom: ["*"]` — accept all contacts.
 Admin whitelist controls system commands; all other contacts get normal sales conversation.
 
+### Streaming Control (OpenClaw 2026.4.5+)
+By default, OpenClaw streams responses token-by-token on WhatsApp. Some WhatsApp Business accounts may encounter delivery issues with streamed messages. Use `blockStreaming: true` to send complete messages instead:
+
+```yaml
+channels:
+  whatsapp:
+    blockStreaming: true   # send full reply at once instead of streaming
+```
+
+This option was restored in v2026.4.5 after being inadvertently removed.
+
 ### WhatsApp Reactions (OpenClaw 2026.4.2+)
 Use `reactionLevel` to control when the agent reacts to customer messages:
 - `"none"` — no reactions (default, safest for business accounts)
@@ -175,6 +186,10 @@ OpenClaw supports multiple AI model providers. The recommended provider is Claud
 | OpenAI | openai-responses | GPT-4o, o3, etc. |
 | Mistral | openai-completions | Full compat as of 2026-04-03 — use `api: openai-completions`, `provider: mistral` |
 | Groq | openai-completions | Fast inference |
+| Qwen (Alibaba) | openai-completions | Added v2026.4.5 — recommended for China deployments |
+| MiniMax | openai-completions | Added v2026.4.5 — Chinese provider, good for multilingual tasks |
+| Fireworks AI | openai-completions | Added v2026.4.5 — fast inference, open-source models |
+| StepFun | openai-completions | Added v2026.4.5 — Chinese provider |
 | Custom / self-hosted | openai-completions | Point `baseUrl` to your endpoint |
 
 **Mistral-specific notes:** OpenClaw now correctly uses `max_tokens` (not `max_completion_tokens`) and disables unsupported OpenAI-specific params (`store`, `reasoning_effort`) when the provider is Mistral or the `baseUrl` points to `api.mistral.ai`. This fix applies automatically — no manual config needed.

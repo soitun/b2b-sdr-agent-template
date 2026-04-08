@@ -8,6 +8,32 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-08 — v3.6.0
+
+### Added
+- **Graphify Knowledge Graph** — Sales intelligence powered by [graphify](https://github.com/safishamsi/graphify)
+  Build queryable knowledge graphs from product catalogs, customer conversations, and
+  market research. Cherry-picked and adapted for B2B SDR context:
+  - Product catalog graph → cross-sell paths, product families, spec relationships
+  - Customer intelligence graph → buying patterns, referral paths, stalled lead recovery
+  - Market research graph → competitive landscape, expansion opportunities
+  - Runtime query via `python3 -m graphify query "topic"` (BFS/DFS traversal)
+  - Interactive HTML visualization for owner dashboard
+  - New skill: `skills/graphify/SKILL.md`
+  - Deploy: auto-installs Python + graphifyy, auto-uploads all local skills
+  - Added to `SKILLS_RESEARCH` in skill profiles (`full` profile)
+
+### Changed
+- **Operator Bilingual Mode now opt-in** — disabled by default, enable via
+  `operator_bilingual: true` in IDENTITY.md. Prevents unexpected self-chat messages
+  for operators who don't need Chinese translation.
+
+### Deployment
+- `deploy.sh` now auto-uploads all local skills from `skills/` directory
+- `deploy.sh` Step 3b: auto-installs Python3 + graphify on target server
+
+---
+
 ## 2026-04-08 — OpenClaw v2026.4.7 upstream sync
 
 ### Breaking Changes

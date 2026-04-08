@@ -14,21 +14,21 @@
 
 ```
 ┌─────────────────────────────────────────────────┐
-│              AI SDR Agent                        │
+│              AI SDR Agent                       │
 ├─────────────────────────────────────────────────┤
-│  IDENTITY.md   → 我是谁？公司、角色              │
-│  SOUL.md       → 人格、价值观、底线              │
-│  AGENTS.md     → 全链路销售工作流（10 阶段）      │
-│  USER.md       → 负责人画像、ICP、评分            │
-│  HEARTBEAT.md  → 13 项自动化 Pipeline 巡检       │
-│  MEMORY.md     → 三引擎记忆架构                  │
-│  TOOLS.md      → CRM、渠道、集成                 │
+│  IDENTITY.md   → 我是谁？公司、角色                │
+│  SOUL.md       → 人格、价值观、底线                │
+│  AGENTS.md     → 全链路销售工作流（10 阶段）        │
+│  USER.md       → 负责人画像、ICP、评分             │
+│  HEARTBEAT.md  → 13 项自动化 Pipeline 巡检        │
+│  MEMORY.md     → 三引擎记忆架构                   │
+│  TOOLS.md      → CRM、渠道、集成                  │
 ├─────────────────────────────────────────────────┤
-│  Skills        → 可扩展能力                      │
-│  产品知识库     → 你的产品目录                    │
-│  Cron Jobs     → 13 个自动化定时任务              │
+│  Skills        → 可扩展能力                       │
+│  产品知识库     → 你的产品目录                      │ 
+│  Cron Jobs     → 13 个自动化定时任务               │
 ├─────────────────────────────────────────────────┤
-│  OpenClaw Gateway (WhatsApp / Telegram / Email)  │
+│  OpenClaw Gateway (WhatsApp / Telegram / Email)  
 └─────────────────────────────────────────────────┘
 ```
 

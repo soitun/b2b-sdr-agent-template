@@ -190,6 +190,8 @@ OpenClaw supports multiple AI model providers. The recommended provider is Claud
 | MiniMax | openai-completions | Added v2026.4.5 — Chinese provider, good for multilingual tasks |
 | Fireworks AI | openai-completions | Added v2026.4.5 — fast inference, open-source models |
 | StepFun | openai-completions | Added v2026.4.5 — Chinese provider |
+| Gemma 4 (Google) | openai-completions | Added v2026.4.7 — use `thinkingOff: true` for fast, non-reasoning responses |
+| Arcee AI | openai-completions | Added v2026.4.7 — Trinity catalog; task-specialized models for targeted workflows |
 | Custom / self-hosted | openai-completions | Point `baseUrl` to your endpoint |
 
 **Mistral-specific notes:** OpenClaw now correctly uses `max_tokens` (not `max_completion_tokens`) and disables unsupported OpenAI-specific params (`store`, `reasoning_effort`) when the provider is Mistral or the `baseUrl` points to `api.mistral.ai`. This fix applies automatically — no manual config needed.
@@ -201,6 +203,43 @@ model:
   provider: "mistral"
   api: "openai-completions"
 ```
+
+## Webhook Ingress Plugin (Inbound Automation — OpenClaw 2026.4.7+)
+Allows external systems (CRMs, n8n, Zapier, custom services) to create and drive TaskFlows via HTTP POST to the OpenClaw gateway. Ideal for triggering outreach sequences on new lead events.
+
+### Setup
+```yaml
+# in openclaw.json
+plugins:
+  webhook-ingress:
+    enabled: true
+    secret: "{{WEBHOOK_SECRET}}"   # HMAC-SHA256 shared secret
+    endpoint: "/webhooks/crm"      # gateway path (gateway must be LAN-bound)
+```
+
+### Trigger an outreach TaskFlow on new lead
+```bash
+# From your CRM / automation tool
+curl -s -X POST "http://SERVER_IP:{{gateway_port}}/webhooks/crm" \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Secret: $WEBHOOK_SECRET" \
+  -d '{
+    "event": "lead.created",
+    "flow": "outreach-sequence",
+    "data": {
+      "name": "Li Wei",
+      "company": "Shenzhen MFG Co",
+      "phone": "+8613800138000",
+      "source": "alibaba",
+      "product_interest": "Industrial bearings"
+    }
+  }'
+```
+
+### Security
+- Always use HTTPS in production (put gateway behind nginx + TLS)
+- The `secret` field enforces HMAC-SHA256 validation — mismatched requests are rejected
+- Gateway must be bound to `lan` (not `loopback`) to receive external webhook calls
 
 ## ChromaDB (Conversation History — L3 + L4)
 Per-turn vector store with customer_id isolation and auto-tagging.

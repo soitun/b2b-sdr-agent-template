@@ -80,6 +80,15 @@ openclaw gateway restart
 
 ## Known Issues by Version
 
+### 2026.4.7
+
+| Issue | Symptom | Fix |
+|-------|---------|-----|
+| `/allowlist` requires owner | `error: permission denied — owner required` when non-owner runs `/allowlist add` | Ensure only owner accounts manage allowlists; update automation that used non-owner accounts for this |
+| Env override blocks | Workflows injecting Java/Rust/Git/Kubernetes/cloud credential env vars via model layer silently blocked | Move env var injection to `deploy.sh` or workspace config — out of model instruction path |
+| `gateway config.apply` blocked from model | Runtime config patches via AI tool calls fail with `blocked: model-facing write` | Use direct gateway API calls with human approval for config changes |
+| Docker bind change | Gateway now auto-binds to `0.0.0.0` inside containers | If you relied on loopback-only binding in Docker, set `bind: loopback` explicitly |
+
 ### 2026.4.5
 
 | Issue | Symptom | Fix |

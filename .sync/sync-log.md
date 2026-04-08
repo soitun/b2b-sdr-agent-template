@@ -1,3 +1,17 @@
+## 2026-04-08 — v2026.4.7 Full Sync
+- Previous release: v2026.4.5
+- New release: v2026.4.7 (2026-04-08, released 02:12 UTC)
+- Classification: BREAKING (allowlist owner-only, env override blocks, gateway config write block) + RELEVANT (Webhook Ingress Plugin, `openclaw infer` hub, Memory/Wiki stack, Gemma 4, Arcee AI, session compaction checkpoints, Docker auto-bind)
+- Changes adapted:
+  - CHANGELOG.md: documented breaking changes, webhook plugin, infer hub, memory wiki, new providers, security
+  - workspace/TOOLS.md: added Webhook Ingress Plugin section; added Gemma 4 + Arcee AI to provider table
+  - deploy/UPGRADE.md: added v2026.4.7 known issues and migration notes
+- Blog published:
+  - EN: https://pulseagent.io/en/blog/openclaw-v2026-4-7 (postId: 4b5f9f2f-79f3-441c-913e-3696a85e1d80, action: created)
+  - ZH: https://pulseagent.io/zh/blog/openclaw-v2026-4-7 (postId: 4b5f9f2f-79f3-441c-913e-3696a85e1d80, action: updated)
+- WeChat: FAILED — server-side credential error (40125: invalid appsecret rid: 69d5c858-575e6000-2ac52806) — same issue as prior run, retry manually or fix WeChat appsecret in PulseAgent dashboard
+- Release pointer advanced: v2026.4.5 → v2026.4.7
+
 ## 2026-04-08 — Release Check (run #35)
 - Latest stable release: v2026.4.5
 - Last synced release:   v2026.4.5

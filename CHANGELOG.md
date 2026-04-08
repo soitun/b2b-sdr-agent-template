@@ -8,6 +8,101 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-08 — OpenClaw v2026.4.7 upstream sync
+
+### Breaking Changes
+
+- **`/allowlist` commands now require owner authorization**
+  `/allowlist add` and `/allowlist remove` previously could be issued by any user. They now require owner-level access. Update your admin flows if you delegated allowlist management to non-owner accounts.
+  Upstream: v2026.4.7
+
+- **Dangerous environment overrides now blocked at model layer**
+  Model-facing tool calls can no longer override Java, Rust, Cargo, Git, Kubernetes, or cloud credential environment variables. If your workflows inject env vars through model instructions, migrate to explicit workspace config or deploy scripts.
+  Upstream: v2026.4.7
+
+- **`gateway config.apply` / `config.patch` writes blocked from model**
+  AI cannot modify gateway config at runtime via these calls. This prevents prompt-injection-based config changes. Existing automation that patches config via the model layer must migrate to direct API calls with human approval.
+  Upstream: v2026.4.7
+
+### Added
+
+- **Webhook Ingress Plugin** — inbound automation drives TaskFlows via shared-secret endpoints
+  External systems (CRMs, zapier, n8n, custom webhooks) can now POST to OpenClaw and trigger or advance TaskFlows directly. This is the cleanest way to implement inbound-lead-to-SDR-flow automation: new lead in CRM → webhook → SDR agent starts outreach sequence.
+
+  ```yaml
+  # workspace config
+  plugins:
+    webhook-ingress:
+      enabled: true
+      secret: "{{WEBHOOK_SECRET}}"    # shared secret for HMAC validation
+      endpoint: "/webhooks/crm"       # path exposed by the gateway
+  ```
+
+  Sample payload to start a TaskFlow:
+  ```json
+  {
+    "event": "lead.created",
+    "flow": "outreach-sequence",
+    "data": { "name": "Li Wei", "company": "Shenzhen MFG Co", "phone": "+86..." }
+  }
+  ```
+  Upstream: v2026.4.7
+
+- **`openclaw infer` CLI Hub** — first-class provider-backed inference
+  New top-level command for running inference tasks outside of conversation context: model completions, media generation, web lookups, and embeddings. Useful for batch processing leads or generating personalized outreach copy at scale.
+
+  ```bash
+  openclaw infer model --prompt "Draft a cold outreach message for Li Wei at Shenzhen MFG" \
+    --provider anthropic --model claude-sonnet-4-6
+  openclaw infer media image --prompt "Product catalog cover" --provider gemini
+  ```
+  Upstream: v2026.4.7
+
+- **Memory/Wiki stack restored** — structured claims, evidence fields, freshness-weighted search
+  The bundled memory-wiki stack is back with meaningful upgrades: claim/evidence structure, contradiction clustering, and freshness weighting. For SDR use: store verified facts about leads (budget signals, authority contacts, pain points) with evidence links. Freshness weighting ensures recent intel ranks higher than stale data.
+  Upstream: v2026.4.7
+
+- **New AI providers: Gemma 4 (Google), Arcee AI**
+  Two new bundled providers. Gemma 4 supports `thinkingOff` semantics for faster, non-reasoning responses — good for high-volume first-touch outreach. Arcee AI includes the Trinity catalog, a curated set of task-specialized models. Added to `workspace/TOOLS.md` provider table.
+  Upstream: v2026.4.7
+
+- **Session compaction checkpoints + branch/restore UI**
+  Sessions UI now shows compaction checkpoints. You can branch from any checkpoint (useful when a long sales conversation goes off-track) or restore pre-compaction state for audit/review. No config needed — automatic.
+  Upstream: v2026.4.7
+
+- **Pluggable compaction provider registry**
+  Plugins can now replace the built-in context summarization pipeline. Enables custom summarization strategies (e.g., preserve all price quotes verbatim while compacting small talk).
+  Upstream: v2026.4.7
+
+### Fixed
+
+- **HTTP requests aborted on client disconnect** — zombie sessions no longer hold resources when a channel disconnects mid-conversation. Improves stability on mobile channels (WhatsApp, Telegram) where connections drop frequently.
+  Upstream: v2026.4.7
+
+- **Docker/Podman auto-binding to `0.0.0.0`** — gateway now auto-binds to all interfaces inside containers. No manual `--bind` flag needed. Simplifies `docker run` and Compose deployments.
+  Upstream: v2026.4.7
+
+- **Prompt-cache runtime context exposure** — prompt cache statistics now surfaced to context engines. Helps diagnose unexpected API costs or latency spikes by showing cache hit/miss at runtime.
+  Upstream: v2026.4.7
+
+- **Ollama vision capability auto-detected** — no longer need to manually declare `vision: true` for Ollama vision models; capability is detected from API responses.
+  Upstream: v2026.4.7
+
+### Security
+
+- Media byte limits enforced before base64 decode on Teams, Signal, and QQ Bot channels — prevents memory exhaustion via crafted media payloads.
+- File upload URLs validated against HTTPS + Microsoft/SharePoint host allowlists — prevents SSRF via document upload.
+- Cross-origin redirect body stripping for POST payloads — prevents credential leakage on redirects.
+- Private-network blocking for main-frame document redirects — closes redirect-based SSRF vector.
+- Workspace-only filesystem constraint enforced for document uploads.
+  Upstream: v2026.4.7
+
+### Documentation
+- Updated `workspace/TOOLS.md`: Webhook Ingress Plugin section, expanded AI provider table (Gemma 4, Arcee AI)
+- Updated `deploy/UPGRADE.md`: v2026.4.7 security breaking changes and migration notes
+
+---
+
 ## 2026-04-06 — OpenClaw v2026.4.5 upstream sync
 
 ### Breaking Changes (run `openclaw doctor --fix`)

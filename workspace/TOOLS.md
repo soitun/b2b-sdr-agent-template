@@ -192,9 +192,16 @@ OpenClaw supports multiple AI model providers. The recommended provider is Claud
 | StepFun | openai-completions | Added v2026.4.5 — Chinese provider |
 | Gemma 4 (Google) | openai-completions | Added v2026.4.7 — use `thinkingOff: true` for fast, non-reasoning responses |
 | Arcee AI | openai-completions | Added v2026.4.7 — Trinity catalog; task-specialized models for targeted workflows |
+| xAI / Grok | openai-completions | `api.grok.x.ai` recognized as native endpoint as of v2026.4.8 |
 | Custom / self-hosted | openai-completions | Point `baseUrl` to your endpoint |
 
-**Mistral-specific notes:** OpenClaw now correctly uses `max_tokens` (not `max_completion_tokens`) and disables unsupported OpenAI-specific params (`store`, `reasoning_effort`) when the provider is Mistral or the `baseUrl` points to `api.mistral.ai`. This fix applies automatically — no manual config needed.
+**Mistral-specific notes (v2026.4.8+):** `reasoning_effort` is now sent for Mistral Small 4 with thinking-level mapping. OpenClaw also correctly uses `max_tokens` (not `max_completion_tokens`) and disables unsupported params (`store`) when the provider is Mistral. These apply automatically — no manual config needed.
+
+**Memory vector recall (v2026.4.8+):** OpenClaw now shows an explicit warning when `sqlite-vec` is unavailable or writes are degraded, rather than silently falling back. If you see `[memory] sqlite-vec unavailable — vector recall disabled` in logs, install `sqlite-vec` on your server.
+
+**Web Fetch (v2026.4.8+):** HTTP/2 is now explicitly disabled for undici 8.0 compatibility. If you run Node 22+ and experienced web-fetch failures in v2026.4.7, upgrade to v2026.4.8.
+
+**Exa Search:** Now visible in the onboarding and provider pickers — it was previously hidden from the setup UI despite being a supported search provider.
 
 Set your model in the OpenClaw workspace config:
 ```yaml

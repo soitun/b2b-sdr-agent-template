@@ -1,3 +1,17 @@
+## 2026-04-08 — v2026.4.8 Full Sync
+- Previous release: v2026.4.7
+- New release: v2026.4.8 (2026-04-08, released 05:14 UTC)
+- Classification: RELEVANT (fixes-only — critical security: cross-origin redirect credential leak, base64 limits, exec gating; channel fixes: Telegram multi-account, Slack proxy/bot-token; Claude thinking-block preservation; provider updates)
+- Changes adapted:
+  - CHANGELOG.md: documented all security fixes, channel fixes, agent runtime improvements, provider updates
+  - workspace/TOOLS.md: added xAI/Grok native endpoint note, Mistral reasoning_effort note, memory vector recall warning, Web Fetch HTTP/2 fix, Exa Search visibility note
+  - deploy/UPGRADE.md: added v2026.4.8 known issues table (fixes-only, no breaking changes)
+- Blog published:
+  - EN: https://pulseagent.io/en/blog/openclaw-v2026-4-8-security-stability (postId: 014fef87-3a23-443f-8420-3e87cee0df55, action: created)
+  - ZH: https://pulseagent.io/en/blog/openclaw-v2026-4-8-security-stability (postId: 014fef87-3a23-443f-8420-3e87cee0df55, action: updated)
+- WeChat: FAILED — server-side credential error (40125: invalid appsecret rid: 69d5e5c8-6cfbaedf-69df929e) — same recurring issue, fix WeChat appsecret in PulseAgent dashboard
+- Release pointer advanced: v2026.4.7 → v2026.4.8
+
 ## 2026-04-08 — Release Check (run #36)
 - Latest stable release: v2026.4.7
 - Last synced release:   v2026.4.7

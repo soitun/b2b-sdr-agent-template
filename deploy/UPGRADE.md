@@ -80,6 +80,21 @@ openclaw gateway restart
 
 ## Known Issues by Version
 
+### 2026.4.8
+
+**No breaking changes.** Upgrade is safe — fixes only.
+
+| Issue Fixed | Symptom (v2026.4.7) | Notes |
+|-------------|---------------------|-------|
+| Cross-origin redirect secret leak | Auth tokens could leak on 307/308 redirects via SSRF-guarded fetches | Fixed automatically — no config change needed |
+| Telegram setup failure | `Cannot find module './dist/...'` on packaged installs / npm global install | Module now loads from bundled sidecars |
+| Slack proxy ignored | Socket Mode WebSocket bypasses corporate HTTP proxy | Now respects `HTTPS_PROXY` and `NO_PROXY` env vars |
+| Slack bot token re-read | `SecretRef`-backed bot tokens fail after `openclaw gateway restart` | Resolved in SecretRef resolution path |
+| Claude thinking blocks stripped | Opus 4.5+/Sonnet 4.5+/Claude 4 thinking blocks dropped before forwarding → reasoning regressions | Fixed — thinking blocks preserved |
+| Web fetch HTTP/2 failure | `UND_ERR_CONNECT_TIMEOUT` or connection errors on Node 22+ | `allowH2: false` applied; upgrade to v2026.4.8 |
+| Memory vector recall silent | No warning when sqlite-vec unavailable | Now logs explicit warning |
+| Cron job "unknown id" | Cron jobs show "unknown cron job id" after gateway restart | `jobId` now loaded from on-disk store |
+
 ### 2026.4.7
 
 | Issue | Symptom | Fix |

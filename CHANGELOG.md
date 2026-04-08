@@ -8,6 +8,71 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-08 — OpenClaw v2026.4.8 upstream sync
+
+### Security (Critical — Upgrade Recommended)
+
+- **Cross-origin redirect secret leakage fixed**
+  307/308 redirects now drop request bodies and headers by default. Previously, auth tokens and API keys could leak to redirect targets via SSRF-guarded fetches. No config change required — protection is automatic after upgrade.
+  Upstream: v2026.4.8
+
+- **`/allowlist` commands require owner on channel resolution**
+  In v2026.4.7 the owner check was enforced before channel resolution; now it's enforced before *and* during. Closes a narrow window where allowlist mutations could bypass the guard during fast concurrent requests.
+  Upstream: v2026.4.8
+
+- **Base64 byte limits before decode**
+  Teams, Signal, QQ, and image-tool payloads now enforce byte-size caps before base64 decoding, preventing memory exhaustion from oversized payloads.
+  Upstream: v2026.4.8
+
+- **Untrusted event marking**
+  Background summaries, ACP relay payloads, and wake-hook events are now tagged as untrusted system events and excluded from elevated execution contexts.
+  Upstream: v2026.4.8
+
+- **Windows cmd.exe approval gating strengthened**
+  Env-assignment carriers inside cmd.exe wrappers are now caught by the approval gate even when ambient execution defaults are elevated.
+  Upstream: v2026.4.8
+
+### Fixed
+
+#### Channels
+- **Telegram/Setup**: Module import failures on packaged installs resolved — setup contracts load from bundled sidecars instead of missing dist files. Multi-account setups no longer break after `npm install -g`.
+- **Slack**: WebSocket Socket Mode connections now respect HTTP(S) proxy settings and `NO_PROXY` exclusions — required for corporate proxy deployments.
+- **Slack/Actions**: Bot token resolution fixed for `SecretRef`-backed tokens after config re-reads (e.g., `openclaw gateway restart`).
+- **Discord/Events**: Cover image accepts URLs or local PNG/JPG/GIF paths with proper validation.
+- **Matrix**: Multi-paragraph and loose-list rendering repaired — content no longer detaches from list items in formatted messages.
+- **Telegram/Doctor**: Access-control fallback during multi-account normalization restored; inherited allowlists are no longer lost after `openclaw doctor`.
+- **BlueBubbles**: Explicit private-network opt-out now respected for loopback and private server URLs.
+
+#### Agent Runtime
+- **Claude thinking blocks preserved** for Opus 4.5+, Sonnet 4.5+, and Claude 4-family models. Interleaved thinking was being stripped before forwarding — this caused reasoning regressions on complex SDR tasks with those models.
+- **Context overflow recovery** now combines oversized and aggregate tool-result recovery in a single pass with a total-context backstop (prevents runaway token accumulation on long SDR conversation threads).
+- **Claude CLI**: Nested API errors from structured output now surface properly instead of showing opaque CLI failure messages.
+
+#### Infrastructure & Gateway
+- **Gateway sessions — compaction checkpoints**: Pre-compaction state is now checkpointed with UI branch/restore — you can revert to the conversation state before compaction if a summary loses context.
+- **Compaction provider**: Pluggable via `agents.defaults.compaction.provider` — swap in a different model for compaction without changing your main session model.
+- **HTTP clients**: In-flight chat-completions aborted when client disconnects (prevents orphaned API calls on mobile reconnects).
+- **Model selection**: Explicitly selected session models now resolve separately from runtime fallback chains — no more unexpected model switching mid-session.
+- **Cron jobs**: `jobId` now loaded from on-disk store when missing, fixing "unknown cron job id" errors on gateway restart.
+
+#### Providers
+- **xAI/Grok**: `api.grok.x.ai` recognized as native endpoint; legacy `x_search` auth path maintained.
+- **Mistral**: `reasoning_effort` sent for Mistral Small 4 with thinking-level mapping.
+- **Ollama**: Vision capability auto-detected from API responses; streaming routed to correct endpoint (was defaulting to first configured instance).
+- **Google Gemma**: Explicit thinking-off semantics preserved while reasoning support enabled in compatibility wrappers.
+- **OpenAI TTS / Groq**: Groq endpoints now receive `wav` format; explicit `responseFormat` overrides honored.
+
+#### Tools
+- **Web Fetch**: HTTP/2 disabled for undici 8.0 compatibility (`allowH2: false`) — fixes connection errors on servers running Node 22+ with updated undici.
+- **Exa Search**: Now shown in onboarding and provider pickers — was hidden from setup UI despite being a supported provider.
+- **Memory Vector Recall**: Explicit warning when `sqlite-vec` is unavailable or writes are degraded (instead of silent fallback).
+- **Memory Dreaming**: Config reads/writes now target the selected memory slot plugin instead of always targeting `memory-core`.
+
+#### UI
+- **Control UI light mode**: Scrollbar thumbs now visible in WebKit on light backgrounds.
+- **iOS/Apple Watch**: Approval recovery works while iPhone is locked/backgrounded.
+- **DNS pinning**: Skipped when trusted env-proxy mode is active — allows proxy-only sandboxes to resolve hosts through trusted proxies.
+
 ## 2026-04-08 — v3.6.0
 
 ### Added

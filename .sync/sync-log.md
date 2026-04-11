@@ -1,3 +1,14 @@
+## 2026-04-11 — v2026.4.10 Full Sync (recovery publish)
+- Previous published release: v2026.4.5
+- Release: v2026.4.10 (2026-04-11T02:43:25Z)
+- Note: Drafts were generated in a prior session but blog API calls never completed; last-release was prematurely advanced. This run re-publishes the drafts.
+- Classification: RELEVANT (Active Memory plugin, Codex provider, Teams actions, exec-policy CLI, 126 security fixes)
+- Blog published:
+  - EN: https://pulseagent.io/en/blog/openclaw-v2026-4-10-active-memory-codex-teams (postId: 81c3726f-1271-4a6b-8c81-178506cd210e, action: updated)
+  - ZH: https://pulseagent.io/blog/openclaw-v2026-4-10-active-memory-codex-teams (postId: 82384a46-6c35-40f0-b7ce-062f3d6abe5b, action: updated)
+- WeChat: FAILED — WeChat API error 40125 (invalid appsecret) — server-side config issue, retry manually after refreshing appsecret in WeChat Official Account dashboard
+- Release pointer confirmed: v2026.4.10
+
 ## 2026-04-11 — Release Check (run #74)
 - Latest stable release: v2026.4.10
 - Last synced release:   v2026.4.10

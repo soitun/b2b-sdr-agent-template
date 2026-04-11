@@ -1,3 +1,20 @@
+## 2026-04-11 — v2026.4.10 Full Sync
+
+- New release: v2026.4.10 (2026-04-11, released 02:43 UTC)
+- Previous synced release: v2026.4.9
+- Categorization: RELEVANT (no breaking changes — Active Memory plugin, Codex/GPT-5 bundled provider, Teams message actions, exec-policy CLI, gateway commands.list RPC, per-provider allowPrivateNetwork, 126 security fixes)
+- Template changes:
+  - CHANGELOG.md: added v2026.4.10 section (Active Memory, Codex, Teams actions, exec-policy, gateway RPC, 126 security fixes)
+  - workspace/TOOLS.md: updated security banner to v2026.4.10; added Active Memory plugin section; added Codex to provider table; added exec-policy CLI, Teams actions, gateway RPC, allowPrivateNetwork notes
+  - deploy/UPGRADE.md: added v2026.4.10 known issues table (no breaking changes)
+- Blog published:
+  - EN: https://pulseagent.io/en/blog/openclaw-v2026-4-10-active-memory-codex-teams (postId: 81c3726f-1271-4a6b-8c81-178506cd210e, action: created)
+  - ZH: https://pulseagent.io/blog/openclaw-v2026-4-10-active-memory-codex-teams (postId: 82384a46-6c35-40f0-b7ce-062f3d6abe5b, action: created)
+- WeChat: ERROR — WeChat API error: invalid appsecret (40125, rid: 69d9bec7-4055c94f-379a6bed) — recurring issue, **action required: fix WeChat appsecret in PulseAgent dashboard**
+- Release pointer: v2026.4.9 → v2026.4.10
+
+---
+
 ## 2026-04-11 — Release Check (run #64)
 - Latest stable release: v2026.4.9
 - Last synced release:   v2026.4.9

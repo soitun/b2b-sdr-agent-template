@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Adapted from openclaw v2026.4.11
+- **Microsoft Teams**: Delegated OAuth setup for Teams channels — enterprise 365 tenants can now authenticate via user SSO instead of service accounts; added Graph pagination for large reaction/message batches
+- **Feishu channel**: Added Feishu to multi-channel orchestration matrix for Mainland China / Southeast Asia B2B markets; improved document comment session context parsing, comment reactions, and typing feedback
+- **Plugin auth descriptors**: Plugin manifests now declare activation and setup descriptors, enabling guided auth/config flows for CRM and SDR plugins (HubSpot, Airtable, Notion connectors)
+- **Webchat rich output**: Control UI renders media/reply/voice directives as structured chat bubbles; `[embed …]` rich output tag supported (requires `allow_external_embeds: true`); external embed URLs gated behind config
+
+### Adapted from openclaw v2026.4.11 (Fixes)
+- Codex OAuth scope rewriting fix (affects GPT-5/GPT-5.4 users)
+- WhatsApp account configuration edge case on fresh installs
+- Telegram session topic initialization fix for group SDR bots
+
 ### Added
 - CONTRIBUTING.md, SECURITY.md, CHANGELOG.md for open-source best practices
 - Negotiation authorization matrix in AGENTS.md (price/MOQ/delivery/sample limits)

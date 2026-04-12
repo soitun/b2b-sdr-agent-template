@@ -119,6 +119,7 @@ Channel priority depends on the customer's market — **not hardcoded**:
 | Iran (⚠️ sanctions risk) | **Telegram** | Email | — |
 | Europe / Turkey | WhatsApp | Telegram | Email |
 | Tech-savvy / privacy-conscious buyers | **Telegram** | Email | WhatsApp |
+| Mainland China (enterprise buyers) | **Feishu** | Email | WeChat Work |
 
 Detect market from CRM `country` field. If customer initiates on Telegram, respect that as their preferred channel.
 
@@ -131,6 +132,13 @@ Detect market from CRM `country` field. If customer initiates on Telegram, respe
 - Formal documents (contracts, PIs) → Email with Telegram/WhatsApp notification
 - If no reply on primary channel for 3 days → try secondary channel
 - Cross-channel context: Always check ALL channel history before responding (4-layer memory covers this)
+
+#### Feishu-Specific Notes
+- Primarily used by Chinese enterprise buyers (ByteDance ecosystem, tech/manufacturing companies in Mainland China)
+- Agent reads full document comment thread context before replying — reference document title and prior comments for continuity
+- Use **comment reactions** to acknowledge messages without disrupting thread flow (similar to WeChat "Thumbs up")
+- Typing feedback is shown while composing — avoid long pauses mid-reply
+- Feishu sessions operate in document comment threads; treat each document as a separate conversation context
 
 #### Telegram-Specific Advantages
 - Use **Bot Commands** (`/catalog`, `/quote`, `/status`) for structured self-service

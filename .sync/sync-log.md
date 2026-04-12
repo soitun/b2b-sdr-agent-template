@@ -1,3 +1,11 @@
+## 2026-04-12 — v2026.4.11 WeChat Retry (run #83)
+- Latest stable release: v2026.4.11
+- Last synced release:   v2026.4.11 (blogs published by prior session)
+- Result: NO NEW RELEASE — retrying WeChat only
+- WeChat retry (v2026.4.11): FAILED — HTTP 403 Cloudflare error 1010 (WAF/IP block on pulseagent.io API server — same as run #77) — **action required: whitelist server egress IP in Cloudflare dashboard, or publish WeChat article manually using the ZH draft at `.sync/blog-drafts/openclaw-v2026.4.11-zh.md`**
+
+---
+
 ## 2026-04-11 — Release Check + WeChat Retry (run #82)
 - Latest stable release: v2026.4.10
 - Last synced release:   v2026.4.10

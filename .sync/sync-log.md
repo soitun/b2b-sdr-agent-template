@@ -1,3 +1,11 @@
+## 2026-04-14 — No New Release + WeChat Retry (run #130)
+- Latest stable release: v2026.4.12
+- Last synced release:   v2026.4.12
+- Result: NO NEW RELEASE — exiting (v2026.4.12 already synced in run #114)
+- WeChat retry (v2026.4.12): FAILED ❌ — `HTTP 403 / Cloudflare error 1010` (ASN/IP ban — agent server IP blocked by Cloudflare WAF on pulseagent.io) — **ACTION REQUIRED: whitelist agent server IP in Cloudflare dashboard for pulseagent.io; 17th consecutive failure for v2026.4.12 (runs #114–#130); ZH draft at `.sync/blog-drafts/openclaw-v2026.4.12-zh.md`; blog live at https://pulseagent.io/en/blog/openclaw-v2026-4-12-active-memory-lm-studio-zh**
+
+---
+
 ## 2026-04-14 — No New Release + WeChat Retry (run #129)
 - Latest stable release: v2026.4.12
 - Last synced release:   v2026.4.12

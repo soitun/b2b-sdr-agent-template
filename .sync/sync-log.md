@@ -1,3 +1,14 @@
+## 2026-04-14 — New Release v2026.4.14 (run #144)
+- Previous tracked release: v2026.4.12
+- New stable release: v2026.4.14 (published 2026-04-14T13:03:29Z, 44 contributors)
+- Action: CHANGELOG updated, blogs published, sync state updated
+- CHANGELOG: updated with GPT-5.4-Pro, Telegram topics, security fixes (XSS/SSRF), WhatsApp/Teams/Feishu/Discord/TTS, memory + cron improvements
+- Blog EN: PUBLISHED ✅ — https://pulseagent.io/en/blog/openclaw-v2026-4-14-gpt5-telegram-topics-security (postId: b958cdee-3c2e-409a-92b8-33930dc3cefc)
+- Blog ZH: PUBLISHED ✅ — https://pulseagent.io/en/blog/openclaw-v2026-4-14-gpt5-telegram-topics-security-zh (postId: 0b46b01f-27b5-432e-9c4b-3063ee66d6dd)
+- WeChat: FAILED ❌ — `40125 invalid appsecret` (rid: 69de3d7c-366b9e3e-2109a06e) — persistent since run #83; **ACTION REQUIRED: refresh WeChat appsecret in PulseAgent platform settings**
+
+---
+
 ## 2026-04-14 — CHANGELOG catchup (run #143)
 - Latest stable release: v2026.4.12 (already tracked)
 - Action: Added missing CHANGELOG entries for v2026.4.11 + v2026.4.12

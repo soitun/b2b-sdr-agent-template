@@ -1,3 +1,27 @@
+## 2026-04-16 — OpenClaw v2026.4.15 sync
+
+### Release
+- v2026.4.14 → v2026.4.15
+- Published: 2026-04-16T21:50:22Z
+
+### Categorization
+- RELEVANT: Anthropic/models → Claude Opus 4.7 as default
+- RELEVANT: Agents/context+Memory → trimmed default prompt budgets
+- WATCH:    Google/TTS → Gemini text-to-speech added
+- SKIP:     BlueBubbles/inbound, CLI/update internals, Gateway/tools, OpenAI Codex routing
+
+### Template changes
+- `workspace/TOOLS.md`: upgrade banner → v2026.4.15, Anthropic row updated (Opus 4.7), Opus 4.7 + Gemini TTS notes added
+- `CHANGELOG.md`: v2026.4.15 entry added
+
+### Blog
+- EN published: https://pulseagent.io/en/blog/openclaw-v2026415-claude-opus-47-google-tts (postId: 306f98a1-e2ee-49e0-ac64-57ed4364495d)
+- ZH published: https://pulseagent.io/blog/openclaw-v2026415-claude-opus-47-google-tts (postId: 5126383e-8e0c-44e2-bce9-18f14d43afe2)
+- Drafts: .sync/blog-drafts/openclaw-v2026.4.15-en.json, openclaw-v2026.4.15-zh.json
+
+### WeChat
+- STATUS: FAILED — WeChat token error 40125 (invalid appsecret on PulseAgent backend — requires server-side fix)
+
 ## 2026-04-16T21:16:56Z — No New Release (run #175)
 - Latest stable release: v2026.4.14
 - Last synced release:   v2026.4.14

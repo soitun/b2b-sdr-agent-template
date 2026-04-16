@@ -8,6 +8,34 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-16 — OpenClaw v2026.4.15 upstream sync
+
+### Changed (Upgrade Recommended)
+
+- **Default model upgraded to Claude Opus 4.7**
+  OpenClaw's default Anthropic model selections, `opus` aliases, and Claude CLI defaults now point to Claude Opus 4.7. If your `openclaw.json` uses `model: opus` or any unversioned alias, it now resolves to Opus 4.7 automatically — no config change required. B2B SDR impact: Opus 4.7 delivers improved multi-step reasoning, stronger objection handling chains, and better long-context coherence across complex pipeline negotiations.
+  Upstream: v2026.4.15
+
+### New Features
+
+- **Google Gemini text-to-speech** *(WATCH — new voice channel capability)*
+  The bundled `google` plugin now includes Gemini TTS: voice selection, WAV reply output, and PCM telephony output. Relevant for deployments adding voice channels (IVR, WhatsApp voice notes). Not required for standard B2B SDR text workflows.
+  Upstream: v2026.4.15
+
+### Fixes
+
+- **Skill sort order stabilized — reduces prompt-cache misses**
+  `available_skills` entries are now sorted alphabetically after all sources merge. Prevents prompt-cache prefix drift when `skills.load.extraDirs` order changes, reducing cold-start API cost for custom-skill deployments.
+  Upstream: v2026.4.15
+
+- **Memory context budget trimmed — lighter long-session context**
+  Default startup and skills prompt budgets are reduced; `memory_get` excerpts are now capped with explicit continuation metadata. Long SDR sessions (30+ turns) see lighter context payloads without losing memory continuity. Reduces per-conversation API cost on high-volume pipelines.
+  Upstream: v2026.4.15
+
+### Documentation
+
+- Updated `workspace/TOOLS.md`: Opus 4.7 default noted in provider table, v2026.4.15 upgrade banner
+
 ## 2026-04-14 — OpenClaw v2026.4.14 upstream sync
 
 ### Security (Upgrade Recommended)

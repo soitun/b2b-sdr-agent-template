@@ -1,7 +1,7 @@
 # TOOLS.md — Tool Configuration
 
-> **⚠ Upgrade recommended — OpenClaw v2026.4.10+**
-> v2026.4.10 ships 126 security and stability fixes plus high-value new features: Active Memory plugin, bundled Codex/GPT-5 provider, and Microsoft Teams message actions. Upgrade: `npm install -g openclaw@latest` or `npx openclaw@latest upgrade`.
+> **⚠ Upgrade recommended — OpenClaw v2026.4.15+**
+> v2026.4.15 upgrades the default Anthropic model to Claude Opus 4.7, adds Gemini text-to-speech, and trims default prompt budgets for lighter long-session context. Upgrade: `npm install -g openclaw@latest` or `npx openclaw@latest upgrade`.
 >
 > **Breaking env var change (v2026.4.9, still applies):** Runtime-control, browser-control override, and skip-server env vars set in workspace `.env` files are silently ignored. Move them to system environment or `openclaw.json`.
 
@@ -215,7 +215,7 @@ OpenClaw supports multiple AI model providers. The recommended provider is Claud
 
 | Provider | API Type | Notes |
 |----------|----------|-------|
-| Anthropic (Claude) | Native | Default — recommended |
+| Anthropic (Claude) | Native | Default — Claude Opus 4.7 as of v2026.4.15 (recommended) |
 | OpenAI | openai-responses | GPT-4o, o3, etc. |
 | Mistral | openai-completions | Full compat as of 2026-04-03 — use `api: openai-completions`, `provider: mistral` |
 | Groq | openai-completions | Fast inference |
@@ -273,6 +273,10 @@ openclaw exec-policy set security=ask          # override individual keys
 **Microsoft Teams message actions (v2026.4.10+):** New actions available for Teams channels: `pin`, `unpin`, `read`, `react`, `listReactions`. Pin confirmed deal terms or SLA commitments in Teams threads; react to acknowledge messages without breaking conversation flow.
 
 **Gateway `commands.list` RPC (v2026.4.10+):** Remote clients can enumerate all agent commands (native, text, skill, plugin) via `commands.list`. Useful for external dashboards or n8n/Zapier automations that need to discover available agent capabilities dynamically.
+
+**Claude Opus 4.7 as default (v2026.4.15+):** All Anthropic model aliases, including `opus`, now resolve to Claude Opus 4.7. If you use an unversioned alias in `openclaw.json`, the upgrade is automatic. To pin a specific version, set `model.id: "claude-opus-4-5"` explicitly.
+
+**Google Gemini TTS (v2026.4.15+):** The bundled `google` plugin now supports Gemini text-to-speech: voice selection, WAV reply output, and PCM telephony output. Relevant for voice-note workflows on WhatsApp or IVR integrations. Enable via the `google` plugin config.
 
 **Agent timeout inheritance (v2026.4.9+):** LLM idle timeout now inherits `agents.defaults.timeoutSeconds` when configured. The idle watchdog is disabled for cron runs to prevent spurious timeout kills on long-processing SDR cron jobs. If your cron SDR agent was dying mid-task with "idle timeout" errors, configure:
 ```yaml

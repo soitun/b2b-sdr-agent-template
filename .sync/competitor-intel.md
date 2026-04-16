@@ -1,3 +1,57 @@
+# Competitor Intel — 2026-04-16
+
+## Changes Detected
+
+- **OpenClaw**: v2026.4.15-beta.1 (Apr 15) — **OAuth token health monitoring** (new Model Auth status card showing token health + provider rate-limit pressure), **cloud storage for durable memory indexes** (memory persistence beyond local disk), secrets redacted in approval prompts (prevents credential leakage in human-in-the-loop flows), symlink validation for workspace files (sandbox hardening).
+- **Apollo.io**: Blog restored after 2-day 503. New posts visible (no dates, likely Apr 14–16): "How to Sell to Customer Success Directors," "The B2B Digital Marketing Playbook for Growth on Autopilot," "How to Sell to VPs of Sales," and — critically — **"How One Company Boosted Trial-to-Paid Conversions by 11% with Dhisana AI and Apollo"** (Dhisana AI is a direct AI SDR competitor to PulseAgent). Continues systematic buyer-persona playbook series.
+- **Salesforge**: Blog restored after 2-day 503. Reveals 7 posts missed during outage — **6 uncaptured Apr 13 posts**: "10 Best LeadInfo Alternatives," "5 LinkedIn Lead Generation Tools You Can White-Label," "How to Generate Leads on LinkedIn: 9 Proven Strategies," "11 Best Mobile Number Finders in UK and Europe," "7 Best Sparkle.io Alternatives," "We Tried 5 ZeroBounce Alternatives." Plus **1 Apr 14 post**: "10 Best ABM Tools Recommended by Top 1% in 2026." All SEO/comparison content.
+- **Instantly.ai**: Blog restored after 2-day 503. No new posts since Apr 13 client-onboarding cluster.
+- **Smartlead**: No new posts since Apr 13. Confirmed accessible.
+- **Reachy.ai**: Blog 404 — day 10. No recovery signal.
+
+---
+
+## Analysis
+
+**OpenClaw v2026.4.15-beta.1's cloud memory storage is the most strategically relevant change for PulseAgent today.** The addition of cloud storage for durable memory indexes decouples agent memory from local disk — meaning persistent outreach agents no longer require local infrastructure to maintain prospect context across sessions. This directly strengthens the on-premises vs. cloud hybrid argument: PulseAgent can now offer a mode where the agent runs locally (LM Studio, from v2026.4.12) but persists memory to cloud storage, rather than forcing a choice between on-prem isolation and session continuity. The OAuth health monitoring is operationally valuable — provider rate-limit pressure dashboarding will catch silent auth failures before they cause missed sends.
+
+The secrets-redaction-in-approval-prompts change has a subtle but important implication: PulseAgent agents that use human-in-the-loop approval flows (e.g., requiring a rep to approve a message before send) no longer risk exposing API keys or OAuth tokens in the approval UI. Upgrade path to v2026.4.15 stable should be tracked for the next 1–2 days.
+
+**Apollo's Dhisana AI case study is the most strategically significant competitive signal in today's report.** Apollo is actively publishing case studies where AI SDR companies (Dhisana AI) use Apollo as their data backbone and achieve measurable results (11% trial-to-paid). This is not a coincidence — it is Apollo constructing a "built on Apollo" narrative for the AI SDR layer. The implication: Apollo is positioning itself as infrastructure for AI SDR tools, not a competitor to them. If this narrative solidifies, AI SDR tools without Apollo data integration lose credibility in evaluations where buyers ask "where does your contact data come from?"
+
+For PulseAgent, this is a two-edged signal. Negative: if buyers anchor on Apollo-backed enrichment as a quality signal, PulseAgent's OpenClaw-native stack (which does not route through Apollo) may face a data quality objection in head-to-head evaluations. Positive: the manufacturing/export verticals PulseAgent targets are precisely where Apollo's generalist B2B database has weakest coverage. A counter-claim of "vertical-specific data quality for manufacturing buyers" directly exploits the gap Apollo's infrastructure narrative cannot fill.
+
+**Apollo's buyer-persona playbook series is now systematic.** Confirmed new entries: Customer Success Directors, VPs of Sales, CFOs (from Apr 12), C-suite (from Apr 9). The pattern is one persona per post, data-backed claims. Apollo is building a searchable library that intercepts every buyer-type search for which PulseAgent has no content equivalent. This is compounding SEO and brand authority that will be very hard to reverse in 6 months.
+
+**Salesforge's 13-post week (Apr 12–14) is the largest single-week content push we've tracked from them.** The 6 uncaptured Apr 13 posts reveal a pattern: they published across 4 distinct tool-comparison clusters in one day — email verification (ZeroBounce alternatives), LinkedIn prospecting (white-label tools, mobile number finders), lead intelligence (LeadInfo alternatives), and ABM (top tools). Each cluster captures a different buying intent. Salesforge is building a tool-comparison moat: anyone shopping for any sales tool adjacent to their stack lands on a Salesforge page first. By Apr 14 they added ABM tools. This is a content-driven distribution play, not a product play — but it fills their top-of-funnel with high-intent switcher traffic.
+
+**Reachy.ai day 10.** The organic SEO window is the primary remaining play; the cold outreach first-mover window closed around day 6–7.
+
+**Manufacturing/export market**: Still uncovered by all competitors. Zero vertical-specific content from any source in today's check.
+
+---
+
+## Action Items for PulseAgent
+
+- **Track OpenClaw v2026.4.15 stable promotion** — beta.1 dropped Apr 15. Watch for stable in the next 1–2 days. Key upgrade drivers: cloud memory storage (hybrid on-prem/cloud memory architecture) and OAuth health monitoring (operational stability for live sequences).
+- **Respond to Apollo's Dhisana AI case study directly** — Apollo is building an "AI SDR on Apollo" narrative. PulseAgent's counter is a manufacturing-vertical case study that demonstrates results Apollo-enriched tools cannot achieve (export markets, WhatsApp channels, local-language outreach). One real case study outweighs three competitor case studies.
+- **Prepare a data quality positioning statement** — before the next sales cycle where Apollo data quality comes up as an objection, draft a one-page response: "Why vertical-specific data beats generalist enrichment for manufacturing buyers." Pre-empts the objection before it becomes a deal blocker.
+- **Audit Apollo's buyer-persona SEO gap** — identify 2–3 manufacturing buyer personas (e.g., "How to Sell to Procurement Managers in Heavy Industry") with zero competitor coverage. Publish one post now; it will rank by default since no one else is writing it.
+- **Note Salesforge's comparison-page acceleration** — they've now published ~20 tool-comparison/alternatives pages in 2 weeks. PulseAgent still has zero. The minimum viable counter is one high-intent page: "Best AI SDR for manufacturing" or "Apollo alternative for WhatsApp-first markets." This should be treated as a week-1 task, not a backlog item.
+- **Reachy.ai alternative page** — day 10, organic traffic building. Still a viable long-tail capture. Two-hour task.
+
+---
+
+## Metadata
+
+- **Last checked**: 2026-04-16
+- **Next check**: 2026-04-17
+- **Sources**: apollo.io/blog (restored, new posts unverified dates), instantly.ai/blog (restored, no new posts since Apr 13), smartlead.ai/blog (confirmed, no new posts since Apr 13), salesforge.ai/blog (restored, 7 backlogged posts revealed), reachy.ai/blog (404, day 10), github.com/openclaw/openclaw/releases (v2026.4.15-beta.1 confirmed)
+
+---
+
+---
+
 # Competitor Intel — 2026-04-15
 
 ## Changes Detected

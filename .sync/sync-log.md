@@ -1,3 +1,12 @@
+## 2026-04-17 — No New Release (WeChat retry run)
+- Latest stable release: v2026.4.15
+- Last synced release:   v2026.4.15
+- Result: NO NEW RELEASE — exiting.
+- WeChat retry for v2026.4.15: FAILED — Cloudflare 403 error 1010 (session IP blocked by pulseagent.io WAF)
+- **ACTION REQUIRED: publish WeChat manually or use a whitelisted IP/proxy**
+
+---
+
 ## 2026-04-16 — No New Release (WeChat retry run)
 - Latest stable release: v2026.4.15
 - Last synced release:   v2026.4.15

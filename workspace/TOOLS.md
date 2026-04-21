@@ -1,7 +1,9 @@
 # TOOLS.md — Tool Configuration
 
-> **⚠ Upgrade recommended — OpenClaw v2026.4.15+**
-> v2026.4.15 upgrades the default Anthropic model to Claude Opus 4.7, adds Gemini text-to-speech, and trims default prompt budgets for lighter long-session context. Upgrade: `npm install -g openclaw@latest` or `npx openclaw@latest upgrade`.
+> **⚠ Security upgrade — OpenClaw v2026.4.20+**
+> v2026.4.20 closes multiple env-injection vectors (all `OPENCLAW_*` keys + `MINIMAX_API_HOST` + `NODE_OPTIONS` blocked from workspace `.env`), extends the config mutation guard so agents cannot rewrite operator-trusted paths, and scopes WebSocket broadcasts to `operator.read`. Upgrade: `npm install -g openclaw@latest` then `openclaw gateway install --force && openclaw gateway restart`.
+>
+> **Session memory:** Entry cap and age prune are now enforced by default. Large session stores are pruned at load time — tune `session.maxEntries` and `session.maxAgeMs` in `openclaw.json` if needed.
 >
 > **Breaking env var change (v2026.4.9, still applies):** Runtime-control, browser-control override, and skip-server env vars set in workspace `.env` files are silently ignored. Move them to system environment or `openclaw.json`.
 

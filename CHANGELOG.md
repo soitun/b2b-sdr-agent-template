@@ -8,6 +8,95 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-21 — OpenClaw v2026.4.20 upstream sync
+
+### Security (Upgrade Recommended)
+
+- **Workspace `.env` hardened — all `OPENCLAW_*` keys blocked from untrusted files**
+  All `OPENCLAW_*` env keys are now blocked from untrusted workspace `.env` files, extending the runtime-control isolation from v2026.4.9. Also newly blocked: `MINIMAX_API_HOST` injection and interpreter-startup keys like `NODE_OPTIONS` for stdio MCP servers. If your deploy scripts inject these keys via workspace `.env`, move them to system environment or `openclaw.json` before upgrading.
+  Upstream: v2026.4.20
+
+- **Config mutation guard extended — AI cannot rewrite operator-trusted paths**
+  `config.patch` and `config.apply` tool calls from model-driven agents can no longer overwrite operator-trusted config paths. Closes a privilege-escalation vector where a compromised agent could modify gateway security settings mid-session.
+  Upstream: v2026.4.20
+
+- **Non-admin paired-device sessions scoped to own pairing actions only**
+  Paired devices without admin rights can no longer approve or reject other devices' pairing requests. Relevant for multi-operator deployments where paired mobile devices share a gateway.
+  Upstream: v2026.4.20
+
+- **WebSocket broadcasts require `operator.read` — unknown events scoped by default**
+  Chat, agent, and tool-result WebSocket event frames now require `operator.read` scope. Unknown event types are scoped by default rather than broadcast. Hardens gateway against read-access escalation via WebSocket.
+  Upstream: v2026.4.20
+
+- **QQBot SSRF guard — direct-upload media URLs validated**
+  SSRF protection added to QQBot's `uploadC2CMedia` and `uploadGroupMedia` direct-upload paths. If you route media through internal hosts via QQBot, ensure those hosts are in your SSRF allowlist.
+  Upstream: v2026.4.20
+
+### Changed (Upgrade Recommended)
+
+- **Default system prompts strengthened — better SDR pipeline completion**
+  OpenClaw's built-in system prompts now include explicit completion bias, live-state verification checks, and weak-result recovery mechanisms. For B2B SDR agents, this means the agent is less likely to stop mid-pipeline on ambiguous responses, self-verifies before marking a lead stage complete, and retries gracefully when a tool call returns a weak result.
+  Upstream: v2026.4.20
+
+- **Session entry cap and age prune enforced by default**
+  Session stores now enforce the built-in entry cap and prune oversized stores at load time. Prevents out-of-memory conditions on long-running SDR deployments with hundreds of active conversations. No config change required — defaults are safe. To customize: `session.maxEntries` and `session.maxAgeMs` in `openclaw.json`.
+  Upstream: v2026.4.20
+
+- **Auto-reply policy scoped per conversation type — direct chats vs groups**
+  The `NO_REPLY` policy is now applied per conversation type: direct chats receive a helpful rewritten reply while group channels stay quiet. For SDR agents, this means the agent correctly handles 1:1 leads on WhatsApp and Telegram while staying silent in broadcast or staff group chats without extra config.
+  Upstream: v2026.4.20
+
+- **Cron state split — `jobs-state.json` separate from `jobs.json`**
+  Runtime cron execution state is now stored in `jobs-state.json` so `jobs.json` remains stable for git-tracked definitions. If you version-control your cron job definitions, this eliminates noisy state changes in git diffs. Migrated automatically on first run.
+  Upstream: v2026.4.20
+
+### Fixes
+
+- **Active memory degrades gracefully on recall failure**
+  If memory recall fails (e.g., vector store unavailable, index corrupt), the agent now logs a warning and continues the turn instead of failing. Critical for production SDR deployments that process inbound leads without manual supervision.
+  Upstream: v2026.4.20
+
+- **Web search plugin API keys now resolve correctly**
+  Plugin-scoped `SecretRef` API keys for Exa, Firecrawl, Gemini, Kimi, Perplexity, Tavily, and Grok are now correctly resolved. If your lead-research or enrichment workflow uses any of these search plugins and keys are stored as `SecretRef`, this fix is required.
+  Upstream: v2026.4.20
+
+- **Telegram polling watchdog raised from 90s to 120s**
+  The Telegram polling stall threshold is raised from 90 s to 120 s (configurable via `channels.telegram.pollingStallThresholdMs`). Reduces false-positive reconnects under high-message-volume SDR campaigns and slow network conditions.
+  Upstream: v2026.4.20
+
+- **Telegram offset confirmation timeout — prevents zombie socket hangs**
+  Persisted-offset confirmation now has a client-side timeout, preventing Telegram polling from hanging indefinitely on dropped connections. Affects long-running SDR campaigns on high-volume Telegram channels.
+  Upstream: v2026.4.20
+
+- **Model auto-failover session overrides cleared before each turn**
+  Transient auto-failover provider/model overrides are now cleared before each turn, so the primary model is retried immediately on the next message rather than sticking to the failover. Ensures your configured primary model (e.g., Claude Opus 4.7) is used for lead qualification, not a fallback.
+  Upstream: v2026.4.20
+
+- **`/new` and `/reset` clear auto-sourced overrides, preserve explicit selections**
+  Starting a new conversation or resetting now clears auto-sourced model, provider, and auth-profile overrides while preserving any model you've explicitly set. Prevents stale failover state from carrying into fresh SDR sessions.
+  Upstream: v2026.4.20
+
+- **Memory dreaming: normalized timestamps and deduplicated session keys**
+  Memory sweep timestamps are normalized and narrative session keys are deduplicated via hashing, preventing memory leaks in long-running deployments. Relevant for SDR agents using the active-memory plugin across hundreds of concurrent lead conversations.
+  Upstream: v2026.4.20
+
+- **Gateway doctor surfaces pending pairing, scope-upgrade, and stale device-token issues**
+  `openclaw doctor` now detects and surfaces pending device pairing requests, scope-upgrade approval drift, and stale device-token problems. Reduces silent gateway auth failures in multi-operator team deployments.
+  Upstream: v2026.4.20
+
+- **Slack `SecretRef` outbound reply fix — unresolved secret error resolved**
+  Outbound Slack replies were failing with "unresolved SecretRef" for file or exec secret sources. Fixed — Slack channel outbound messaging is restored.
+  Upstream: v2026.4.20
+
+- **Gateway cost usage cache bounded with FIFO eviction**
+  The cost usage cache now has FIFO eviction to prevent unbounded memory growth. Relevant for high-volume SDR deployments processing many sessions over long uptimes.
+  Upstream: v2026.4.20
+
+### Documentation
+
+- Updated `workspace/TOOLS.md`: v2026.4.20 upgrade banner, session entry cap note, Telegram polling note
+- Updated `deploy/UPGRADE.md`: v2026.4.20 known-issues table
+
 ## 2026-04-16 — OpenClaw v2026.4.15 upstream sync
 
 ### Changed (Upgrade Recommended)

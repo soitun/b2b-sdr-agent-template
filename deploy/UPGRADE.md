@@ -80,6 +80,22 @@ openclaw gateway restart
 
 ## Known Issues by Version
 
+### 2026.4.20
+
+**Security-critical upgrade.** Multiple env injection vectors closed, config mutation guard extended, WebSocket scoping hardened.
+
+| Change / Feature | Notes | Action Required |
+|------------------|-------|-----------------|
+| `OPENCLAW_*` keys blocked from workspace `.env` | All `OPENCLAW_*` env keys + `MINIMAX_API_HOST` + interpreter-startup keys (e.g. `NODE_OPTIONS`) are blocked in untrusted `.env` files | Move any such keys to system environment or `openclaw.json` before upgrading |
+| Config mutation guard extended | `config.patch` / `config.apply` tool calls from model agents can no longer overwrite operator-trusted config paths | No action needed — security improvement |
+| Non-admin paired devices scoped | Non-admin paired-device sessions can only manage their own pairing; cannot approve/reject other devices | No action needed unless automation scripts relied on cross-device approval |
+| WebSocket `operator.read` required | Chat/agent/tool-result WebSocket frames require `operator.read` scope | If custom WebSocket clients don't carry `operator.read`, add the scope to their auth token |
+| Session entry cap + age prune enforced by default | Oversized session stores are pruned at load time | Tune `session.maxEntries` / `session.maxAgeMs` in `openclaw.json` if you need larger stores |
+| Cron state split to `jobs-state.json` | Runtime execution state separated from `jobs.json` definitions | If version-controlling `jobs.json`, add `jobs-state.json` to `.gitignore` if not already present |
+| Telegram polling watchdog 90s → 120s | `channels.telegram.pollingStallThresholdMs` raised | No action needed; set explicitly if you want a different threshold |
+| Web search plugin `SecretRef` resolution fixed | Exa, Firecrawl, Perplexity, Tavily, Grok, Gemini, Kimi plugin API keys now resolve correctly | No action needed — bug fix |
+| Auto-failover session overrides cleared per-turn | Transient failover state cleared before each new turn | No action needed — ensures primary model is used by default |
+
 ### 2026.4.10
 
 **No breaking changes.** Upgrade is safe — new features opt-in, 126 security fixes applied automatically.

@@ -8,6 +8,42 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-22 — OpenClaw v2026.4.21 upstream sync
+
+### Security (Upgrade Recommended)
+
+- **Owner-enforced commands require verified owner identity**
+  Owner-enforced commands now require verified owner identity before execution, closing a privilege-escalation path where non-owner operators could invoke owner-reserved commands under certain conditions. For multi-operator deployments (sales manager + SDR reps), operator-tier agents can no longer trigger owner-tier commands.
+  Upstream: v2026.4.21
+
+### Changed
+
+- **Image generation defaults to gpt-image-2 with 2K/4K resolution hints**
+  The bundled image-generation provider now uses `gpt-image-2` by default and advertises 2K and 4K size hints. For SDR agents generating product catalog images, quote visuals, or marketing assets, this is a direct quality upgrade with no prompt changes required.
+  Upstream: v2026.4.21
+
+### Fixes
+
+- **Plugin doctor repairs bundled runtime dependencies for packaged installs**
+  `openclaw doctor` can now repair bundled plugin runtime dependencies from doctor paths for packaged installs, resolving a class of silent plugin failures where missing post-install dependencies produced no clear error.
+  Upstream: v2026.4.21
+
+- **Slack thread routing restored for concurrent outbound sends**
+  Thread aliases are now preserved in runtime outbound Slack sends so programmatic messages land in the correct thread rather than the channel root or an unintended thread. Restores predictable behavior for Slack-based lead follow-up and CRM notification flows.
+  Upstream: v2026.4.21
+
+- **Browser automation: invalid accessibility refs rejected immediately**
+  Invalid accessibility refs are now rejected immediately rather than waiting for a full timeout, reducing latency for failing browser automation tasks such as web form submissions and lead enrichment scraping.
+  Upstream: v2026.4.21
+
+- **Image generation fallback: failed candidates logged at warn level**
+  Failed provider/model candidates during automatic image-generation fallback are now logged at warn level before the fallback fires, making fallback behavior visible in production logs.
+  Upstream: v2026.4.21
+
+- **node-domexception deprecation warning resolved**
+  The `node-domexception` alias is mirrored into root `package.json` overrides, silencing deprecation warnings in Node.js 18+ environments. No functional impact.
+  Upstream: v2026.4.21
+
 ## 2026-04-21 — OpenClaw v2026.4.20 upstream sync
 
 ### Security (Upgrade Recommended)

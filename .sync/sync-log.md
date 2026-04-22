@@ -1,3 +1,13 @@
+## 2026-04-22 — New Release Synced: v2026.4.21 (check run #50)
+- Previous release: v2026.4.20
+- New stable release: v2026.4.21 (published 2026-04-22T04:18:58Z)
+- Skipped pre-releases: v2026.4.20-beta.2, v2026.4.20-beta.1
+- Changes: gpt-image-2 default image gen (2K/4K hints), owner-command security fix, Slack thread routing fix, plugin doctor dependency repair, browser invalid-ref fast rejection, node-domexception deprecation fix
+- CHANGELOG.md: updated
+- EN blog: https://pulseagent.io/en/blog/openclaw-v2026-4-21-release (postId: 34c2e713-86b8-4be3-bed8-eac586e58638)
+- ZH blog: https://pulseagent.io/blog/openclaw-v2026-4-21-release-zh (postId: 18d3c6da-e936-4925-ae21-7d5b57272ca8)
+- WeChat: FAILED — `WeChat API error: 40125 invalid appsecret` (rid: 69e85ad3-6d9abc5c-2100aed9) — **6th consecutive 40125 failure; WeChat publish blocked until PulseAgent platform WeChat appsecret is corrected** — ZH draft at `.sync/blog-drafts/openclaw-v2026.4.21-zh.json`
+
 ## 2026-04-22 — No New Release (check run #49)
 - Latest stable release: v2026.4.20
 - Last synced release:   v2026.4.20 (blogs published by prior session)

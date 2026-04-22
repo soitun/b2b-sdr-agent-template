@@ -1,3 +1,9 @@
+## 2026-04-22 — No New Release (check run #54)
+- Latest stable release: v2026.4.21
+- Last synced release:   v2026.4.21
+- Result: NO NEW RELEASE — no action taken
+- WeChat retry skipped: 9 consecutive 40125 failures confirm platform appsecret misconfiguration — action required on PulseAgent side before retrying
+
 ## 2026-04-22 — No New Release (check run #53)
 - Latest stable release: v2026.4.21
 - Last synced release:   v2026.4.21

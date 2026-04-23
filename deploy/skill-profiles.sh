@@ -16,6 +16,11 @@ SKILLS_CORE=(
   "summarize"
   "lead-discovery"
   "quotation-generator"
+  "capability-evolver-pro"
+  "self-improving-agent"
+  "memory-hygiene"
+  "skillhub-preference"
+  "web-tools-guide"
 )
 
 # ─── B2B Sales Skills ────────────────────────────────────
@@ -72,6 +77,7 @@ SKILLS_EMAIL=(
 # ─── Automation Skills ────────────────────────────────────
 SKILLS_AUTOMATION=(
   "agent-browser"
+  "agent-browser-clawdbot"
   "listing-swarm"
   "foxreach"
   "campaign-orchestrator"

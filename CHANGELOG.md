@@ -8,6 +8,70 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-23 — OpenClaw v2026.4.22 upstream sync
+
+### New Features
+
+- **Voice Call streaming transcription across Deepgram, ElevenLabs, and Mistral**
+  Incoming and outgoing voice calls can now be transcribed in real-time using any of three providers. For B2B SDR teams running voice follow-up alongside WhatsApp/Telegram, every call is automatically transcribed and available for AI summarization, CRM logging, and objection tracking — with no manual note-taking required.
+  Upstream: v2026.4.22
+
+- **Per-group and per-direct systemPrompt forwarding for WhatsApp**
+  Each WhatsApp group or direct conversation can now carry its own `systemPrompt` config, forwarded through the channel layer. SDR agents can maintain distinct personas for each prospect segment — different tone for cold leads vs. warm pipeline, different product focus for each vertical — without running separate instances.
+  Upstream: v2026.4.22
+
+- **Mailbox-style session filtering with labels and search**
+  Sessions can now be organized with labels and filtered via a search interface. Useful for managing high-volume SDR inboxes: label leads by stage (cold / warm / proposal-sent), filter by account, and surface active threads instantly.
+  Upstream: v2026.4.22
+
+- **xAI image generation, text-to-speech, and speech-to-text via grok-imagine-image**
+  xAI models (including `grok-imagine-image`) are now first-class providers for image generation, TTS, and STT. Adds a new vendor option for generating product visuals, voice demos, and audio content in SDR outreach flows.
+  Upstream: v2026.4.22
+
+- **Local embedded mode: terminal chats without Gateway**
+  A new embedded mode allows the agent to run inline in a terminal session without requiring a full Gateway deployment, while plugin approval gates are preserved. Useful for quick local testing of SDR agent configurations before production rollout.
+  Upstream: v2026.4.22
+
+- **Auto-install missing provider and channel plugins on first setup**
+  Required plugins are detected and installed automatically during initial configuration. Reduces setup friction for new deployments — no more manual plugin discovery after `install.sh`.
+  Upstream: v2026.4.22
+
+- **Browser-local personal identity for operators with avatar support**
+  Operators can configure a browser-local identity with avatar. Enables multiple SDR operators to maintain distinct visible identities within the same deployment.
+  Upstream: v2026.4.22
+
+- **Bundled Tencent Cloud provider plugin with TokenHub integration**
+  Tencent Cloud (Hunyuan models + COS storage) ships as a bundled plugin with TokenHub credential management. For businesses targeting the Chinese market, this enables a fully domestic AI stack alongside WeChat and other Tencent services.
+  Upstream: v2026.4.22
+
+- **Claude Opus 4.7 support via Amazon Bedrock Mantle**
+  The latest Claude Opus 4.7 model is now accessible through the Amazon Bedrock Mantle provider. Upgrade SDR conversation quality with the most capable Claude model for nuanced negotiation and complex objection handling.
+  Upstream: v2026.4.22
+
+- **Enhanced OpenAI Responses with native web_search tool**
+  OpenAI Responses API now automatically activates the native `web_search` tool. SDR agents can enrich prospect conversations with real-time market data, news, and company intelligence without additional tool configuration.
+  Upstream: v2026.4.22
+
+- **`/models add <provider> <modelId>` command for in-chat model registration**
+  New models can be registered directly from a chat session without editing config files. Useful for trying new model versions during live SDR deployments.
+  Upstream: v2026.4.22
+
+### Changed
+
+- **Reasoning models default to "medium" thinking level**
+  The implicit thinking level for reasoning models is raised from low to medium, producing more thorough responses for complex sales scenarios without requiring explicit configuration.
+  Upstream: v2026.4.22
+
+### Fixed
+
+- **Token usage now reported correctly for OpenAI-compatible local backends**
+  Local LLM setups (Ollama, LM Studio, etc.) now report accurate token counts, enabling reliable cost/usage tracking in mixed-model deployments.
+  Upstream: v2026.4.22
+
+- **Telegram forum topic thread caching stabilized**
+  Forum topic thread mappings are now cached with bounded expiry, preventing stale topic IDs from misdirecting messages in active Telegram forum groups.
+  Upstream: v2026.4.22
+
 ## 2026-04-22 — OpenClaw v2026.4.21 upstream sync
 
 ### Security (Upgrade Recommended)

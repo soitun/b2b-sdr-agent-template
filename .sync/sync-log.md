@@ -1,3 +1,24 @@
+## 2026-04-23 — OpenClaw v2026.4.22 synced
+
+- Previous release: v2026.4.21
+- New release: v2026.4.22 (published 2026-04-23T13:56 UTC)
+- CHANGELOG.md: updated with 13 categorized entries (11 new features, 1 changed, 2 fixed)
+- Blog EN: published → https://pulseagent.io/en/blog/openclaw-v2026-4-22-voice-calls-whatsapp-systemprompt-bedrock-opus (postId: bea00657-90c4-43f8-a012-c75a58e58d2e)
+- Blog ZH: published → https://pulseagent.io/en/blog/openclaw-v2026-4-22-voice-calls-whatsapp-systemprompt-bedrock-opus-zh (postId: f446e5fd-205a-47e7-8432-a2f83e96dfd9)
+- WeChat: FAILED — 40125 invalid appsecret (WeChat Official Account credentials need refresh in PulseAgent backend)
+- Drafts saved: .sync/blog-drafts/openclaw-v2026.4.22-en.json, openclaw-v2026.4.22-zh.json
+
+### Key changes in v2026.4.22 (B2B SDR relevance)
+- RELEVANT: Voice Call streaming transcription (Deepgram / ElevenLabs / Mistral)
+- RELEVANT: Per-group WhatsApp systemPrompt config forwarding
+- RELEVANT: Mailbox-style session filtering with labels and search
+- RELEVANT: Bundled Tencent Cloud plugin + TokenHub (China market)
+- RELEVANT: Claude Opus 4.7 via Amazon Bedrock Mantle
+- RELEVANT: OpenAI Responses native web_search tool
+- RELEVANT: Auto-install missing plugins on first setup
+- WATCH: /models add command, medium thinking level default
+- SKIP: Azure OpenAI image endpoint, OAuth model merging fix
+
 ## 2026-04-23 — No New Release (check run #66)
 - Latest stable release: v2026.4.21
 - Last synced release:   v2026.4.21

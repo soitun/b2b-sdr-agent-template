@@ -1,3 +1,9 @@
+## 2026-04-23 — WeChat retry for v2026.4.22: FAILED (40125 invalid appsecret — rid: 69eaa822-5aa7596a-0e5bd95d)
+- Blog EN: already published → https://pulseagent.io/en/blog/openclaw-v2026-4-22-voice-calls-whatsapp-systemprompt-bedrock-opus
+- Blog ZH: already published → https://pulseagent.io/en/blog/openclaw-v2026-4-22-voice-calls-whatsapp-systemprompt-bedrock-opus-zh
+- WeChat: BLOCKED — PulseAgent backend WeChat appsecret must be corrected before publishes can resume
+- ZH draft preserved at: .sync/blog-drafts/openclaw-v2026.4.22-zh.json
+
 ## 2026-04-23 — OpenClaw v2026.4.22 synced
 
 - Previous release: v2026.4.21

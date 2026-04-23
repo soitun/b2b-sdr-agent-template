@@ -384,6 +384,7 @@ Join the conversation, ask questions, and share your use cases:
 - [PulseAgent Blog](https://pulseagent.io/en/blog) — Tutorials, release notes, and case studies
 - [Open Source Hub](https://pulseagent.io/en/open-source) — All repos, docs, and ecosystem links
 - [ClawHub](https://clawhub.ai) — Browse and install AI agent skills
+- [Running on Kimi K2.6](docs/RUNNING-ON-KIMI.md) — LLM setup guide (pitfalls, auth profiles, context budgeting)
 
 ## Contributing
 

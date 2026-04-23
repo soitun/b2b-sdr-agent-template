@@ -54,6 +54,8 @@ If you already have [OpenClaw](https://openclaw.dev) running:
 clawhub install b2b-sdr-agent
 ```
 
+> Browse more skills on [ClawHub](https://clawhub.ai) — the AI agent skill marketplace.
+
 Done. The skill installs the full 7-layer context system, delivery-queue, and sdr-humanizer into your workspace. Then customize:
 
 ```bash
@@ -369,9 +371,23 @@ Don't want to self-host? **[PulseAgent](https://pulseagent.io/app)** offers full
 
 [Get Started →](https://pulseagent.io/app)
 
+## Community
+
+Join the conversation, ask questions, and share your use cases:
+
+- [Discord](https://discord.gg/V3M23TJ3) — Real-time chat with the team
+- [Telegram](https://t.me/PACommunitybot) — Community discussions
+- [X / Twitter](https://x.com/PulseAgentHQ) — Announcements & updates
+- [Product Hunt](https://www.producthunt.com/products/b2b-sdr-agent) — Upvote & reviews
+
+**Learn more:**
+- [PulseAgent Blog](https://pulseagent.io/en/blog) — Tutorials, release notes, and case studies
+- [Open Source Hub](https://pulseagent.io/en/open-source) — All repos, docs, and ecosystem links
+- [ClawHub](https://clawhub.ai) — Browse and install AI agent skills
+
 ## Contributing
 
-Contributions welcome! Areas where we'd love help:
+Contributions welcome! See our **[Contributing Guide](CONTRIBUTING.md)** for details. Areas where we'd love help:
 
 - **Industry templates**: Add examples for your industry
 - **Skills**: Build new capabilities

@@ -1,3 +1,10 @@
+## 2026-04-24T06:XX:XXZ — No-op check + WeChat retry #21
+- Last synced: v2026.4.22
+- Latest stable: v2026.4.22 (published 2026-04-23) — no new release
+- Blog EN + ZH: already published on pulseagent.io
+- WeChat retry #21: FAILED — HTTP 503 `DNS cache overflow` — 21st consecutive failure; PulseAgent WeChat backend infrastructure still down; ZH draft preserved at .sync/blog-drafts/openclaw-v2026.4.22-zh.json
+- Action required: PulseAgent backend DNS/infrastructure issue must be resolved before WeChat publishes can succeed
+
 ## 2026-04-24T05:XX:XXZ — No-op check + WeChat retry #20
 - Last synced: v2026.4.22
 - Latest stable: v2026.4.22 (published 2026-04-23) — no new release

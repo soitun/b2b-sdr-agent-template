@@ -8,6 +8,15 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-24 — DeepSeek V4 (Flash + Pro) catalog support
+
+### New Features
+
+- **DeepSeek V4 catalog entries**: `deepseek-v4-flash` and `deepseek-v4-pro` added to `providers.deepseek.models[]` in `openclaw.json`. Both reachable via OpenClaw's existing `openai-completions` passthrough — no SDK or plugin changes required. 1M-token context window, 8K/64K max output tokens respectively.
+- **Legacy aliases preserved**: `deepseek-chat` and `deepseek-reasoner` references continue to work via DeepSeek's own server-side aliases until **2026-07-24** (the DeepSeek-announced deprecation date). No forced migration; `agents.defaults.model` is intentionally not touched by this change.
+- **Thinking mode opt-in**: V4 models default to reasoning-on behavior. To get the old `deepseek-chat` fast path (non-thinking, pure `content` output), add `params: { "thinking": { "type": "disabled" } }` under `agents.defaults.models["deepseek/deepseek-v4-flash"]`. Set `{"type": "enabled"}` for Pro-grade reasoning on multi-turn tasks.
+- **Rollback**: single-file snapshot `openclaw.json.bak-2026-04-24` is created automatically by the deploy step; restore and `systemctl --user restart openclaw-gateway` to revert in under a minute.
+
 ## 2026-04-23 — OpenClaw v2026.4.22 upstream sync
 
 ### New Features

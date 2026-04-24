@@ -12,7 +12,7 @@
 
 > Turn any B2B export business into an AI-powered sales machine in 5 minutes.
 
-> 🚀 **New · 2026-04-24** — Now runs on **DeepSeek V4** (Flash + Pro) with **1M-token context** on day 1. Pour hundreds of customer emails into a single prompt without losing state. Native prompt caching cuts sustained-thread costs 5-8x. Default `openclaw.json` already switched to `deepseek-v4-flash`.
+> 🚀 **New · 2026-04-24** — **DeepSeek V4** (Flash + Pro) catalog support on day 1 with **1M-token context**. Pour hundreds of customer emails into a single prompt without losing state. Native prompt caching cuts sustained-thread costs 5-8x. Legacy `deepseek-chat` / `deepseek-reasoner` keep working through DeepSeek's own aliases until **2026-07-24**; switch to `deepseek-v4-flash` / `deepseek-v4-pro` explicitly in `openclaw.json`, and enable reasoning with `params: { thinking: { type: "enabled" } }`.
 
 An open-source, production-ready template for building AI Sales Development Representatives (SDRs) that handle the **full sales pipeline** — from lead capture to deal closing — across WhatsApp, Telegram, and email.
 

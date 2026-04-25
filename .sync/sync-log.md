@@ -1,3 +1,12 @@
+## 2026-04-25T16:00:00Z — No-op check #31 (v2026.4.23)
+
+- Last synced: v2026.4.23
+- Latest stable: v2026.4.23 (2026-04-24T15:19:55Z) — no new release
+- Betas found: v2026.4.23-beta.5, v2026.4.23-beta.6 (skipped — pre-release)
+- WeChat: NOT retried — persistent error 40125 (invalid appsecret) is server-side misconfiguration; 30 consecutive failures; draft preserved at .sync/blog-drafts/openclaw-v2026.4.23-zh.json
+- Action: logged and exited per workflow rules
+- Result: NO NEW RELEASE
+
 ## 2026-04-25T14:00:00Z — No-op check #30 (v2026.4.23)
 
 - Last synced: v2026.4.23

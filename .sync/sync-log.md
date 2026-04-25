@@ -1,3 +1,11 @@
+## 2026-04-25T10:00:00Z — No-op check (v2026.4.23)
+
+- Last synced: v2026.4.23
+- Latest stable: v2026.4.23 (2026-04-24T15:19:55Z) — no new release
+- Betas found: v2026.4.23-beta.4, v2026.4.23-beta.5, v2026.4.23-beta.6 (skipped — pre-release)
+- Action: logged and exited per workflow rules
+- WeChat: NOT retried — 28 consecutive failures confirm server-side appsecret (error 40125) must be fixed in PulseAgent backend; draft preserved at .sync/blog-drafts/openclaw-v2026.4.23-zh.json
+
 ## 2026-04-25T08:00:00Z — No-op check (v2026.4.23)
 
 - Last synced: v2026.4.23

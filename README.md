@@ -12,7 +12,7 @@
 
 > Turn any B2B export business into an AI-powered sales machine in 5 minutes.
 
-> 🚀 **New · 2026-04-24** — **DeepSeek V4** (Flash + Pro) catalog support on day 1 with **1M-token context**. Pour hundreds of customer emails into a single prompt without losing state. Native prompt caching cuts sustained-thread costs 5-8x. Legacy `deepseek-chat` / `deepseek-reasoner` keep working through DeepSeek's own aliases until **2026-07-24**; switch to `deepseek-v4-flash` / `deepseek-v4-pro` explicitly in `openclaw.json`, and enable reasoning with `params: { thinking: { type: "enabled" } }`.
+> 🚀 **New · 2026-04-25** — **OpenClaw v2026.4.24**: Google Meet joins as a bundled AI participant for live sales calls, realtime voice now consults the full agent mid-call, and DeepSeek V4 Flash is the new onboarding default (1M-token context, 5-8× cheaper on sustained threads). WeCom channel pinned for Chinese-market reliability. [See full changelog →](./CHANGELOG.md)
 
 An open-source, production-ready template for building AI Sales Development Representatives (SDRs) that handle the **full sales pipeline** — from lead capture to deal closing — across WhatsApp, Telegram, and email.
 

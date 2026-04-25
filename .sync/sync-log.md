@@ -2401,3 +2401,50 @@
 - Latest stable: v2026.4.15 (April 16, 2026)
 - Betas skipped: v2026.4.19-beta.1, v2026.4.19-beta.2
 - Result: No new stable release. Exiting without update.
+
+## 2026-04-25T00:00:00Z — Sync v2026.4.23 → v2026.4.24
+
+- Last synced: v2026.4.23
+- Latest stable: v2026.4.24 (2026-04-25)
+- Betas skipped: v2026.4.24-beta.1 through v2026.4.24-beta.5
+- Result: **New stable release published**
+
+### Categorization
+| Change | Category |
+|--------|----------|
+| Google Meet bundled participant plugin | RELEVANT |
+| Realtime voice AI (`openclaw_agent_consult`) | RELEVANT |
+| DeepSeek V4 Flash as onboarding default | RELEVANT |
+| WeCom channel source pinned | RELEVANT |
+| Browser: coordinate clicks, 60s action budget, per-profile headless | RELEVANT |
+| Gemini Live voice provider | RELEVANT |
+| Google Meet conference records & artifacts | RELEVANT |
+| OTEL observability spans | RELEVANT |
+| BREAKING: tool-result middleware API change | RELEVANT (plugin authors) |
+| Heartbeat injection fix (critical) | RELEVANT |
+| WhatsApp media/voice/group fixes | RELEVANT |
+| Telegram polling persistence + schema | RELEVANT |
+| Slack thread/broadcast/approval fixes | RELEVANT |
+| MCP Gateway owner-only tool policy | RELEVANT |
+| DeepSeek V4 thinking-replay fix | RELEVANT |
+| Browser profile lock recovery | RELEVANT |
+| Scheduler overflow fix | RELEVANT |
+| Session store rotation | RELEVANT |
+| OpenCode Go catalog + Nix home manager | SKIP |
+| Codex harness seams (internal) | WATCH |
+| Node-LLAMA-CPP opt-in only | WATCH |
+
+### Template Changes
+- `README.md`: Updated "New" banner to v2026.4.24
+- `README.zh-CN.md`: Added Chinese "最新" banner for v2026.4.24
+- `CHANGELOG.md`: Added full v2026.4.24 entry (breaking change + 12 new features + 13 bug fixes)
+
+### Blog Posts
+| Lang | Title | URL | Status |
+|------|-------|-----|--------|
+| EN | OpenClaw 2026.4.24: Google Meet AI, Realtime Voice & DeepSeek V4 Flash Default | https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-default | published |
+| ZH | OpenClaw 2026.4.24：Google Meet AI参会、实时语音与DeepSeek V4 Flash默认模型 | https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-zh | published |
+
+### WeChat
+**Status**: FAILED — `WeChat API error: 40125 invalid appsecret` (same as previous cycle)
+**Action required**: Check WeChat Official Account appsecret in PulseAgent platform settings and re-publish manually via the saved draft at `.sync/blog-drafts/openclaw-v2026.4.24-zh.json`

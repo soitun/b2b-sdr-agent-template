@@ -8,6 +8,110 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-25 — OpenClaw v2026.4.24 upstream sync
+
+> **Breaking change for plugin authors:** The Pi-only `api.registerEmbeddedExtensionFactory(...)` compatibility path has been removed. Custom tool-result transforms must now use `api.registerAgentToolResultMiddleware(...)` with a `contracts.agentToolResultMiddleware` declaration that names the targeted harnesses. Update any custom plugins before upgrading.
+
+### New Features
+
+- **Google Meet bundled participant plugin**
+  OpenClaw ships a first-class Google Meet plugin: personal Google auth, explicit meeting URL joins, Chrome and Twilio realtime transports, `chrome-node` support for Parallels/VM environments, and `recover_current_tab`/`recover-tab` for re-attaching to open meetings. SDR teams can now have the AI present in every discovery call and demo — answering product questions, logging objections, and drafting follow-up notes while the conversation is live.
+  Upstream: v2026.4.24
+
+- **Realtime voice AI during live calls and meetings**
+  Talk, Voice Call, and Google Meet now share an `openclaw_agent_consult` realtime tool: the AI can pull in your full OpenClaw agent (tools, memory, CRM data) mid-call to answer a hard question without putting the prospect on hold. Gateway VoiceClaw adds a new Gemini Live WebSocket backend with owner-auth gating. Paired with `voicecall setup` and dry-run `voicecall smoke` commands for one-step provider readiness checks.
+  Upstream: v2026.4.24
+
+- **DeepSeek V4 Flash confirmed as onboarding default**
+  V4 Flash is now set as the default model for new users in the bundled catalog. For existing deployments, `deepseek-v4-flash` and `deepseek-v4-pro` remain available as explicit selections in `openclaw.json`. A previous thinking/replay bug where follow-up tool-call turns lost `reasoning_content` placeholders is fixed — V4 reasoning chains are now reliable across multi-turn SDR workflows.
+  Upstream: v2026.4.24
+
+- **Browser automation: coordinate clicks, longer action budgets, per-profile headless**
+  `openclaw browser click-coords` adds viewport-coordinate clicks for managed and existing-session automation. `browser.actionTimeoutMs` (default 60 s) prevents healthy long-running browser waits from failing at transport boundaries. `browser.profiles.<name>.headless` lets you run one profile headless for background research while keeping another visible for demos. `~` now expands correctly in `browser.executablePath`.
+  Upstream: v2026.4.24
+
+- **WeCom channel source pinned for Chinese-market reliability**
+  The official external WeCom channel source is now pinned to an exact npm release with dist-integrity checking, guarding against unpinned upstream drift. For B2B export teams relying on WeCom for enterprise customer conversations, this means predictable, auditable plugin versions across every deployment.
+  Upstream: v2026.4.24
+
+- **Gemini Live realtime voice provider**
+  New backend for Voice Call and Google Meet audio bridges: bidirectional audio, function-call support, and Gemini TTS enhancement with configurable `audioProfile` and `speakerName` for consistent voice branding across calls.
+  Upstream: v2026.4.24
+
+- **Google Meet conference records: artifacts, attendance, and history**
+  Meeting records now support artifact and attendance workflows — markdown/file output, latest-record lookup, and `--all-conference-records` for scanning meeting history. Post-call follow-up notes can be auto-generated and linked to the CRM record.
+  Upstream: v2026.4.24
+
+- **OpenRouter TTS provider**
+  New OpenRouter text-to-speech provider using an OpenAI-compatible `/audio/speech` endpoint with `OPENROUTER_API_KEY`. Expands voice note and telephony output options for SDR voice follow-up sequences.
+  Upstream: v2026.4.24
+
+- **OTEL observability: run, model-call, and tool spans**
+  Structured OpenTelemetry spans now cover runs, model calls, and tool executions — with timing, redacted error metadata, and opt-in content capture via `diagnostics.otel.captureContent`. Enables monitoring SDR pipeline SLAs in Grafana, Datadog, or any OTEL backend.
+  Upstream: v2026.4.24
+
+- **Context injection control for fully owned agent prompts**
+  `agents.defaults.contextInjection: "never"` disables workspace bootstrap file injection for agents that own their full prompt lifecycle. Useful for specialized sub-agents (qualifier, closer) that should not inherit the parent's workspace context files.
+  Upstream: v2026.4.24
+
+- **Bonjour LAN Gateway discovery as default-enabled bundled plugin**
+  LAN Gateway advertising moved to a default-enabled bundled plugin with its own `@homebridge/ciao` dependency. Users who don't need Bonjour can disable it without affecting wide-area discovery.
+  Upstream: v2026.4.24
+
+- **Plugin Compatibility Registry**
+  Central registry added for SDK/config/setup/runtime deprecation records with dated migration metadata. Easier to audit which plugins need updates before a platform upgrade.
+  Upstream: v2026.4.24
+
+### Fixed
+
+- **Critical: Heartbeat prompt injection into normal runs**
+  The heartbeat system was injecting its prompt into non-heartbeat runs, causing ordinary SDR replies to be suppressed as `HEARTBEAT_OK`. This is fixed. Heartbeat prompts, `HEARTBEAT_OK` acknowledgments, and runtime context turns are now hidden from visible history.
+  Upstream: v2026.4.24
+
+- **MCP session management: one-shot runtimes and idle eviction**
+  One-shot embedded bundled MCP runtimes now retire at run end. New `mcp.sessionIdleTtlMs` idle eviction cleans up leaked sessions. Startup skipped when runtime tool allowlist cannot reach bundle-MCP tools.
+  Upstream: v2026.4.24
+
+- **Browser profile startup: stale Chromium lock recovery and launch deduplication**
+  Stale `Singleton*` locks left by crashes are now cleared and retried. Concurrent lazy-start calls per profile are deduplicated, preventing duplicate Chrome launches and `PortInUseError`.
+  Upstream: v2026.4.24
+
+- **Scheduler delay overflow**
+  Oversized scheduler delays clamped through a shared safe-timer helper, preventing Node.js timeout cap overflows that could cause scheduled SDR tasks (cron jobs) to fire immediately or never.
+  Upstream: v2026.4.24
+
+- **WhatsApp: media delivery in tool-result replies, voice note transcription, group system prompts**
+  Media generated by tool-result replies is now delivered correctly. Voice notes are transcribed before agent dispatch while keeping transcripts out of command authorization. Setting `systemPrompt: ""` on a specific `groups.<id>` now correctly suppresses the wildcard prompt.
+  Upstream: v2026.4.24
+
+- **Telegram: polling persistence across restarts, model display names, forum-topic config**
+  Accepted update offsets are persisted before handlers complete, preventing replay on restart. Configured model display names now show in provider buttons. Generated schema metadata is included in packaged manifests for forum-topic/group config.
+  Upstream: v2026.4.24
+
+- **Slack: thread ordering, broadcast events, approval buttons, file downloads**
+  Multi-part block deliveries stay in the first reply thread when `replyToMode` is `first`. `thread_broadcast` events are now processed as user messages reaching agents. Native button clicks are resolved through Gateway preserving retry buttons. Non-image file downloads return local paths with file IDs.
+  Upstream: v2026.4.24
+
+- **MCP Gateway security: owner-only tool policy on 127.0.0.1/mcp**
+  `tools/list` and `tools/call` now enforce owner-only tool policy and run before-tool-call hooks, preventing non-owner bearer tokens from accessing owner-only tools.
+  Upstream: v2026.4.24
+
+- **DeepSeek V4 thinking replay on follow-up tool-call turns**
+  Missing `reasoning_content` placeholders added for replayed assistant tool-call turns when V4 thinking is enabled. Multi-turn SDR workflows using DeepSeek reasoning no longer lose context between turns.
+  Upstream: v2026.4.24
+
+- **Agent failover: abort signals and non-retryable 429 responses**
+  Embedded run abort signals are forwarded into provider streams with implicit watchdog caps. Non-retryable 429 responses no longer spin the retry loop.
+  Upstream: v2026.4.24
+
+- **Session store rotation: crash-safe sessions.json rewrite**
+  Oversized `sessions.json` is copied to a rotation backup before atomic rewrite, preventing crash-induced session mapping loss.
+  Upstream: v2026.4.24
+
+- **Matrix cross-signing: full identity trust required**
+  Full cross-signing identity trust is now required for self-device verification. `openclaw matrix verify self` added for CLI-initiated verification.
+  Upstream: v2026.4.24
+
 ## 2026-04-24 — OpenClaw v2026.4.23 upstream sync
 
 ### New Features

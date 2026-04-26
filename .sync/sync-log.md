@@ -1,3 +1,16 @@
+## 2026-04-26T18:00:00Z — No-op check + WeChat retry #38 (v2026.4.24)
+
+- Last synced: v2026.4.24
+- Latest stable: v2026.4.24 — no new release (already synced)
+- Blog EN: already published — https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-default
+- Blog ZH: already published — https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-zh
+- WeChat retry #38: FAILED — HTTP 500 `WeChat API error: WeChat token error: 40125 invalid appsecret rid: 69edd87a-21a478dd-55abbd68`
+- Note: retry #37 (503 DNS cache overflow) was a transient infra blip; root cause is unchanged — PulseAgent backend WeChat appsecret is misconfigured (40125 = invalid appsecret); fix required server-side
+- Draft preserved: .sync/blog-drafts/openclaw-v2026.4.24-zh.json
+- Result: NO NEW RELEASE — WeChat blocked by persistent server-side appsecret misconfiguration (38 consecutive failures)
+
+---
+
 ## 2026-04-26T12:00:00Z — No-op check + WeChat retry #37 (v2026.4.24)
 
 - Last synced: v2026.4.24

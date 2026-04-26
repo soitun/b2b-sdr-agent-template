@@ -1,3 +1,11 @@
+## 2026-04-26 — No new release check
+
+**Checked**: v2026.4.24 == last-release → no new release to process.
+**Latest stable on GitHub**: v2026.4.24 (2026.4.25-beta.1 skipped — pre-release).
+**Action**: No blog, no WeChat publish. Awaiting v2026.4.25 stable.
+
+---
+
 ## 2026-04-26T22:00:00Z — No-op check + WeChat retry #40 (v2026.4.24)
 
 - Last synced: v2026.4.24

@@ -1,8 +1,12 @@
-## 2026-04-26 (latest run) — No-op check (v2026.4.24)
+## 2026-04-26T12:00:00Z — No-op check + WeChat retry #37 (v2026.4.24)
 
 - Last synced: v2026.4.24
-- Latest stable: v2026.4.24 (2026-04-25T18:15Z) — no new release
-- Action: logged and exited (no new release per workflow rules)
+- Latest stable: v2026.4.24 (2026-04-25T18:15Z) — no new release (already synced)
+- Blog EN: already published — https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-default
+- Blog ZH: already published — https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-zh
+- WeChat retry #37: FAILED — HTTP 503 `DNS cache overflow` (new error; differs from prior 36× HTTP 500 appsecret errors — likely transient PulseAgent infra issue)
+- Draft preserved: .sync/blog-drafts/openclaw-v2026.4.24-zh.json
+- Result: NO NEW RELEASE — WeChat blocked; draft ready for next retry
 
 ---
 

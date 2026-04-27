@@ -1,3 +1,13 @@
+## 2026-04-27 — No new release (v2026.4.25 still in beta, up to beta.10)
+
+- Last synced: v2026.4.24
+- Latest stable: v2026.4.24 — no new release (already synced)
+- Latest betas: v2026.4.25-beta.1 through beta.10 (all skipped — pre-release)
+- Outlook: v2026.4.25 stable likely imminent; monitor closely
+- No changes made to template repo
+
+---
+
 ## 2026-04-27 — No new release check + WeChat retry #44 (v2026.4.24)
 
 - Last synced: v2026.4.24

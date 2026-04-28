@@ -1,3 +1,10 @@
+## 2026-04-28 — Release check (run 22)
+
+- **Release check**: v2026.4.26 == last-release → no new release. Latest stable on GitHub is still OpenClaw 2026.4.26 (published 2026-04-28). Exiting per workflow rules.
+- **No action taken**: Awaiting fixes for Blog API (HTTP 500 on all POSTs) and WeChat (error 40125, wrong App Secret) before retrying pending drafts.
+
+---
+
 ## 2026-04-28 — Blog + WeChat retry (run 21)
 
 - **Release check**: v2026.4.26 == last-release → no new release (latest stable is still OpenClaw 2026.4.26, published 2026-04-28 01:11 UTC)

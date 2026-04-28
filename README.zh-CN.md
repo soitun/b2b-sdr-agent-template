@@ -6,7 +6,7 @@
 
 基于 [OpenClaw](https://openclaw.dev) 构建，已在真实外贸企业验证。
 
-> 🚀 **最新 · 2026-04-25** — **OpenClaw v2026.4.24**：Google Meet 正式成为捆绑 AI 参会插件，可在直播销售电话中实时调用完整 Agent；DeepSeek V4 Flash 成为新用户默认模型（1M Token 上下文，成本降低 5-8×）；企业微信渠道已钉版锁定，保障中国市场稳定性。[查看完整更新日志 →](./CHANGELOG.md)
+> 🚀 **最新 · 2026-04-28** — **OpenClaw v2026.4.26**：QQBot 完整群聊支持上线（历史追踪、@触发机制、分群配置），专为中国 B2B 市场打造；Google Live 浏览器实时语音会话支持 Gateway 中继；全新 `openclaw migrate` CLI 实现零停机企业迁移（plan/dry-run/backup）；Cerebras 推理提供商正式捆绑。[查看完整更新日志 →](./CHANGELOG.md)
 
 **🌐 [English](./README.md) | 中文 | [Español](./README.es.md) | [Français](./README.fr.md) | [العربية](./README.ar.md) | [Português](./README.pt-BR.md) | [日本語](./README.ja.md) | [Русский](./README.ru.md)**
 

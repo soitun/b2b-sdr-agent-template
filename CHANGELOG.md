@@ -8,6 +8,52 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-04-28 — OpenClaw v2026.4.26 upstream sync
+
+### New Features
+
+- **QQBot: Full group chat support**
+  QQBot gains comprehensive group chat capabilities: conversation history tracking across sessions, @-mention gating so the bot only activates when addressed, configurable activation modes (mention-only, keyword, always-on) per group, per-group ICP and persona configuration, and a FIFO message queue for high-volume environments. C2C streaming is also supported for one-on-one QQ conversations. For B2B export teams selling into China, this brings the AI SDR natively into Q-groups — the primary procurement communication channel for Chinese enterprise buyers.
+  Upstream: v2026.4.26
+
+- **Tencent Yuanbao: New external channel plugin**
+  A Tencent Yuanbao external channel plugin registers with WebSocket bot functionality, enabling AI SDR presence in China's enterprise AI assistant platform. As Yuanbao adoption grows among Chinese corporations for internal collaboration and vendor communication, this channel puts your agent at the AI-first workflow layer — before prospects open a browser to search for suppliers.
+  Upstream: v2026.4.26
+
+- **Control UI/Talk: Google Live browser realtime voice sessions**
+  A generic browser realtime transport contract enables Google Live browser Talk sessions with constrained ephemeral tokens and Gateway relay support for backend-only realtime voice plugins. No server-side WebRTC infrastructure required; the Gateway relays audio to your backend voice model while short-lived tokens prevent credential leakage. Complements the v2026.4.24 Google Meet plugin for full voice-AI coverage across calls and browsers.
+  Upstream: v2026.4.26
+
+- **CLI: `openclaw migrate` — scriptable enterprise migrations**
+  A new `openclaw migrate` command makes configuration and data migrations safe, auditable, and CI/CD-friendly: `--plan` previews every migration step and impact, `--dry-run --json` produces machine-readable output for approval workflows, `--backup` creates an automatic pre-migration state snapshot, and onboarding detection skips inapplicable migrations on fresh installs. Enterprise teams managing dev/staging/production environments now have a reliable, zero-downtime upgrade primitive.
+  Upstream: v2026.4.26
+
+- **Providers: Cerebras bundled plugin**
+  Cerebras joins as a bundled provider plugin with full onboarding flow, a static model catalog, and documentation. WSE-3-based inference delivers sub-second latency for large context windows — beneficial for high-volume SDR pipelines (1,000+ conversations/day) where response time directly affects conversation quality and lead qualification pace.
+  Upstream: v2026.4.26
+
+- **Memory: Asymmetric embedding endpoints & Ollama query prefixes**
+  OpenAI-compatible memory now supports separate endpoints and input-type configuration for query vs. document embeddings, enabling asymmetric embedding models (Cohere, Jina, Voyage) to use their full retrieval capabilities. Ollama memory adds model-specific retrieval query prefixes for instruction-tuned embedding models. Both improvements increase lead-to-memory match rates without new infrastructure or API keys.
+  Upstream: v2026.4.26
+
+- **Startup optimization: Deferred initialization & schema memoization**
+  QMD, CLI handlers, and plugin HTTP routes now initialize lazily at startup. Plugin schema compilation is memoized across the session. Enterprise deployments with 20+ plugins see meaningfully faster cold-start times.
+  Upstream: v2026.4.26
+
+### Fixed
+
+- WhatsApp proxy support — deploy behind corporate proxies in regulated-market enterprise environments
+- Discord model-picker persistence — channel model selection now survives agent restarts
+- Mattermost DM routing — direct messages now route correctly to the assigned agent
+- LSP process cleanup — language server processes no longer linger after agent shutdown, preventing memory leaks in long-running deployments
+- Plugin discovery with symlinks — monorepo-style symlinked plugin installs now discovered reliably
+- Windows path normalization — ESM loader path handling fixed for Windows-hosted deployments
+- Docker CA certificate bundle — automatic TLS CA installation in Docker images fixes verification failures in enterprise network environments
+- Matrix E2EE improvements — end-to-end encryption reliability in Matrix channel
+  Upstream: v2026.4.26
+
+---
+
 ## 2026-04-27 — OpenClaw v2026.4.25 upstream sync
 
 ### New Features

@@ -2876,3 +2876,26 @@
 1. Investigate and fix `POST /api/blog/publish` (HTTP 500, no error body)
 2. Fix WeChat appsecret (error 40125) in PulseAgent platform settings
 3. Once blog API is restored, run this workflow again — drafts are ready and will publish immediately
+---
+
+## 2026-04-28 — Run 23 — Blog API still HTTP 500, no new release
+
+**Checked**: v2026.4.26 == last-release → no new stable release.
+
+**Blog API retry** (v2026.4.26 EN + ZH drafts):
+- `POST https://pulseagent.io/api/blog/publish` (EN) → **HTTP 500** (empty body)
+- `POST https://pulseagent.io/api/blog/publish` (ZH) → **HTTP 500** (empty body)
+- **23 consecutive failures** since v2026.4.26 was synced
+
+**WeChat**: Skipped — blog URLs not available; WeChat 40125 appsecret error still active.
+
+**Pending drafts** (ready to publish once API recovers):
+- `.sync/blog-drafts/openclaw-v2026.4.26-en.json` — EN, slug: `openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration`
+- `.sync/blog-drafts/openclaw-v2026.4.26-zh.json` — ZH, slug: `openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration-zh`
+- `.sync/blog-drafts/openclaw-v2026.4.25-en.json` — EN (v2026.4.25, also unpublished)
+- `.sync/blog-drafts/openclaw-v2026.4.25-zh.json` — ZH (v2026.4.25, also unpublished)
+
+**Action required (platform team)**:
+1. Fix `POST /api/blog/publish` — HTTP 500, no error body (23 runs, ~2 days)
+2. Fix WeChat appsecret error 40125 in PulseAgent platform settings
+3. Once blog API is restored, re-run workflow — all drafts are ready

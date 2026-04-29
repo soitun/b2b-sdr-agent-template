@@ -2997,3 +2997,26 @@
 1. Fix `POST /api/blog/publish` — HTTP 500, no error body (23 runs, ~2 days)
 2. Fix WeChat appsecret error 40125 in PulseAgent platform settings
 3. Once blog API is restored, re-run workflow — all drafts are ready
+
+---
+
+## 2026-04-29 — Run 29 — Blog API recovered, 4 backlog drafts published
+
+**Checked**: v2026.4.26 == last-release → no new stable release upstream.
+
+**Blog API status**: RECOVERED — HTTP 200 after 23+ consecutive failures.
+
+**Published drafts** (all 4 pending backlogs cleared in this run):
+
+| Version | Lang | Post ID | URL |
+|---------|------|---------|-----|
+| v2026.4.26 | EN | 660cb0c8-3d3a-4d28-a903-483981cfe8be | https://pulseagent.io/en/blog/openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration |
+| v2026.4.26 | ZH | 824dec4c-da07-44f2-9544-7994f81d2324 | https://pulseagent.io/en/blog/openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration-zh |
+| v2026.4.25 | EN | 366c183d-f53d-4f4a-a0ae-4e9a25bc5eff | https://pulseagent.io/en/blog/openclaw-v2026-4-25-tts-elevenlabs-v3-otel-observability |
+| v2026.4.25 | ZH | 279bf0de-7c57-48bf-8398-f08a2857a54e | https://pulseagent.io/en/blog/openclaw-v2026-4-25-tts-elevenlabs-v3-otel-zh |
+
+**WeChat**: Still failing — error 40125 (invalid appsecret). Platform team must update WeChat appsecret in PulseAgent settings, then re-push ZH content for v2026.4.25 and v2026.4.26.
+
+**Action required (platform team)**:
+1. Fix WeChat appsecret error 40125 in PulseAgent platform settings
+2. Re-run WeChat publish step for v2026.4.25-zh and v2026.4.26-zh posts

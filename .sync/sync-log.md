@@ -1,3 +1,21 @@
+## 2026-04-29 03:14 UTC — Run 27 — Blogs re-published (v2026.4.24 + v2026.4.25 + v2026.4.26); WeChat 40125 persists
+
+**Checked**: v2026.4.26 == last-release → no new stable release.
+
+**Blog API**: All 6 pending drafts published successfully (HTTP 200, `action: updated`):
+- v2026.4.24 EN: https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-default
+- v2026.4.24 ZH: https://pulseagent.io/en/blog/openclaw-v2026-4-24-google-meet-voice-deepseek-zh
+- v2026.4.25 EN: https://pulseagent.io/en/blog/openclaw-v2026-4-25-tts-elevenlabs-v3-otel-observability
+- v2026.4.25 ZH: https://pulseagent.io/en/blog/openclaw-v2026-4-25-tts-elevenlabs-v3-otel-zh
+- v2026.4.26 EN: https://pulseagent.io/en/blog/openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration
+- v2026.4.26 ZH: https://pulseagent.io/en/blog/openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration-zh
+
+**Root cause of previous failures**: Blog API was returning 403/Cloudflare 1010 for automated requests without User-Agent; fixed by adding `User-Agent: Mozilla/5.0 (compatible; PulseAgent-Bot/1.0)` to all curl calls.
+
+**WeChat**: HTTP 500, `40125 invalid appsecret` — platform-side WeChat appsecret misconfiguration. All 3 ZH posts queued but not delivered. **Action required**: Fix WeChat appsecret in PulseAgent platform settings (WeChat Official Account backend).
+
+---
+
 ## 2026-04-29 — Run 26 — No new release; blogs confirmed live; WeChat error code shifted to 1010
 
 **Checked**: v2026.4.26 == last-release → no new stable release. Latest GitHub stable remains OpenClaw 2026.4.26 (published 2026-04-28).

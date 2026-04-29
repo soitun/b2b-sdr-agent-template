@@ -1,3 +1,26 @@
+## 2026-04-29 — Run 25 — Blog API RESTORED, all pending drafts published
+
+**Checked**: v2026.4.26 == last-release → no new stable release. Latest GitHub stable remains OpenClaw 2026.4.26 (published 2026-04-28).
+
+**Blog API**: RECOVERED after 24 consecutive failures. All 4 backlogged drafts published:
+
+| Version | Lang | Post ID | URL |
+|---|---|---|---|
+| v2026.4.26 | EN | `660cb0c8-3d3a-4d28-a903-483981cfe8be` | https://pulseagent.io/en/blog/openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration |
+| v2026.4.26 | ZH | `824dec4c-da07-44f2-9544-7994f81d2324` | https://pulseagent.io/en/blog/openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration-zh |
+| v2026.4.25 | EN | `366c183d-f53d-4f4a-a0ae-4e9a25bc5eff` | https://pulseagent.io/en/blog/openclaw-v2026-4-25-tts-elevenlabs-v3-otel-observability |
+| v2026.4.25 | ZH | `279bf0de-7c57-48bf-8398-f08a2857a54e` | https://pulseagent.io/en/blog/openclaw-v2026-4-25-tts-elevenlabs-v3-otel-zh |
+
+**WeChat**: Still failing — error 40125 invalid appsecret (both v2026.4.26 and v2026.4.25 ZH attempted). Platform appsecret config fix still required.
+
+**Action required (platform team)**:
+1. Fix WeChat appsecret error 40125 in PulseAgent platform settings
+2. Once fixed, push these two ZH articles to WeChat:
+   - v2026.4.26: https://pulseagent.io/en/blog/openclaw-v2026-4-26-qqbot-group-chat-live-voice-migration-zh
+   - v2026.4.25: https://pulseagent.io/en/blog/openclaw-v2026-4-25-tts-elevenlabs-v3-otel-zh
+
+---
+
 ## 2026-04-28 — Run 24 — Blog API still HTTP 500, no new release
 
 **Checked**: v2026.4.26 == last-release → no new stable release. Latest GitHub stable remains OpenClaw 2026.4.26 (published 2026-04-28).

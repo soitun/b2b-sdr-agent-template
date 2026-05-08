@@ -8,6 +8,42 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-07 — OpenClaw v2026.5.7
+
+### Bug Fixes
+
+- **WhatsApp/Routing**: Baileys LID forward mapping now routes correctly in multi-device sessions — forward-mapped contacts were previously silently dropped in multi-SIM/multi-number deployments. Fixes #74925. Upstream: v2026.5.7
+- **WhatsApp/Media**: Single captioned media auto-reply now emits as one combined message instead of splitting into a bare caption + uncaptioned media file. Fixes #78770. Upstream: v2026.5.7
+- **Telegram/Auth**: `accessGroup:*` sender allowlists now enforced for DMs, group messages, and native commands — wildcard allowlists no longer silently pass unauthorized senders through to skill dispatch. Fixes #78660. Upstream: v2026.5.7
+- **Native Commands**: Owner enforcement honored for native command handlers, preventing non-owner callers from invoking privileged workflows. Fixes #78864. Upstream: v2026.5.7
+- **Cron/CLI**: Computed `status` field now included in `cron list --json` and `cron show --json` output, making cron pipeline monitoring fully scriptable. Fixes #78701. Upstream: v2026.5.7
+- **Channels/CLI**: `openclaw channels list` now shows channel-only entries by default; `--all` flag added to include bundled channels; state rendering and auth details moved to dedicated commands. Fixes #78456. Upstream: v2026.5.7
+- **OpenAI**: `openai/chat-latest` accepted as a valid API-key model override, routing to ChatGPT Instant. Upstream: v2026.5.7
+- **Active Memory**: Global memory toggles now require admin scope, preventing non-admin operators from wiping shared agent memory in multi-tenant deployments. Fixes #78863. Upstream: v2026.5.7
+- **Auto-reply/Auth**: Authorization hooks now gate skill tool dispatch for auto-reply flows. Fixes #78517. Upstream: v2026.5.7
+- **Agents/Context**: Cached context invalidated on history changes, preventing stale context in long multi-turn qualification sequences. Fixes #78163. Upstream: v2026.5.7
+- **Agents/Compaction**: Compaction summary reserve tokens clamped to each model's output limit, preventing silent failures or truncation on large summaries in extended conversations. Fixes #54392. Upstream: v2026.5.7
+- **Gateway/Sessions**: New transcript file generated on session rollover, preserving full audit trail. Fixes #78607. Upstream: v2026.5.7
+- **Gateway/Sessions**: Cached skills snapshots cleared during `/new` and `sessions.reset`. Fixes #78873. Upstream: v2026.5.7
+- **Plugins/Publishing**: Retry logic for transient ClawHub CLI dependency install failures; preview-passing plugins remain publishable when one preview cell flakes. Upstream: v2026.5.7
+- **Plugins/Install**: Consistent POSIX npm lifecycle shell usage across install, update, and uninstall operations. Upstream: v2026.5.7
+- **Tavily**: Dedicated tool credentials resolved from runtime config snapshots. Fixes #78610. Upstream: v2026.5.7
+- **Discord/Message**: Provider-prefixed target parsing fixed for channel sends. Fixes #78572. Upstream: v2026.5.7
+- **Discord/Voice**: Permission auditing in capabilities and status checks; enhanced capture smoothness with configurable silence grace period. Upstream: v2026.5.7
+- **Telegram Polling**: Watchdog tied to `getUpdates` liveness, preventing polling zombies on network interruption. Fixes #78422. Upstream: v2026.5.7
+- **Telegram/Messages**: Successful same-chat sends now treated as delivered. Fixes #78685. Upstream: v2026.5.7
+- **Cron/Doctor**: Persisted jobs with invalid `payload.model` values repaired. Fixes #78549. Upstream: v2026.5.7
+- **Cron/Isolated Runs**: Delivery fails before execution when target unavailable, preventing phantom run logs. Fixes #78608. Upstream: v2026.5.7
+- **Doctor/Codex OAuth**: Route recovery and preservation during updates. Fixes #78407. Upstream: v2026.5.7
+- **Agents/Subagents**: Session-mode registry honors `archiveAfterMinutes`. Fixes #78263. Upstream: v2026.5.7
+- **Agent Delivery**: Proper `deliverySucceeded=false` reporting. Fixes #78532. Upstream: v2026.5.7
+- **Gateway/Tasks**: Stale task reconciliation preventing reload blocking. Upstream: v2026.5.7
+- **Plugins/Channel Setup**: `setChannelRuntime` forwarded from external entries. Fixes #77799. Upstream: v2026.5.7
+- **Commands/BTW**: Brackets showing missing-question placeholder fixed. Upstream: v2026.5.7
+- **Model Providers**: APNG normalization, Gemini 3 signature preservation, legacy key acceptance, and sanitization repair. Upstream: v2026.5.7
+- **Telegram/Models**: Dot-containing provider ID parsing for callback buttons. Fixes #38745. Upstream: v2026.5.7
+- **Codex/Approvals**: Guardian hook removal, decision remembering, and validation improvements. Upstream: v2026.5.7
+
 ## 2026-05-06 — OpenClaw v2026.5.6
 
 ### Bug Fixes

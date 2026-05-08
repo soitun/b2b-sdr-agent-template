@@ -4582,3 +4582,14 @@ This is now the 18th+ consecutive WeChat failure. The appsecret has NOT been upd
 - **Step 0 WeChat queue drain**: 9 items attempted (v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6), all failed HTTP 403 (appsecret outage ongoing)
 - **Queue size**: 9 → 9 (unchanged)
 - **Action**: No blog/template changes; exiting after queue drain
+
+## Run: 2026-05-08 — OpenClaw v2026.5.7
+- **Last release**: v2026.5.6 → v2026.5.7 (new release detected)
+- **Latest upstream stable**: v2026.5.7 (published 2026-05-07)
+- **Release category**: RELEVANT — 30+ bug fixes: WhatsApp LID routing (#74925), Telegram accessGroup allowlists (#78660), Cron JSON status (#78701), openai/chat-latest support, agent compaction token safety (#54392)
+- **Step 0 WeChat queue drain**: 9 items attempted, all failed HTTP 403 (appsecret 40125 outage ongoing). Queue: 9 → 9
+- **Step 3 Template repo**: README.md, README.zh-CN.md, CHANGELOG.md updated for v2026.5.7
+- **Step 4 Blog (EN)**: Published → https://pulseagent.io/en/blog/openclaw-v2026-5-7-whatsapp-routing-telegram-allowlists-cron-visibility (postId: df3e36a4-fe2e-4e06-88c5-6fae9e0eb506, action: created)
+- **Step 4 Blog (ZH)**: Published → https://pulseagent.io/en/blog/openclaw-v2026-5-7-whatsapp-routing-telegram-allowlists-cron-visibility-zh (postId: daccf08c-b9eb-49b6-8c6d-fbd8ba581b98, action: created)
+- **Step 5 WeChat**: FAILED — appsecret 40125 error (HTTP 500). v2026.5.7 enqueued for retry. Queue: 9 → 10
+- **Queue size**: 10 items pending (v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6, v2026.5.7)

@@ -1,3 +1,11 @@
+## Run: 2026-05-08 (fifth run)
+- **Last release**: v2026.5.7 (unchanged)
+- **Latest upstream stable**: v2026.5.7 (no new release — latest stable on GitHub still 2026-05-07)
+- **Step 0 WeChat queue drain**: 10 items attempted (v2026.4.25 through v2026.5.7) — all FAILED HTTP 403 Forbidden (appsecret 40125 outage ongoing). Queue: 10 → 10
+- **Action**: No blog/template update needed. Committed queue state for continuity.
+
+---
+
 ## Run: 2026-05-08 (fourth run)
 - **Last release**: v2026.5.7 (unchanged)
 - **Latest upstream stable**: v2026.5.7 (no new release — confirmed via GitHub releases API, published 2026-05-07)

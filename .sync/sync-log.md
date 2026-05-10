@@ -1,3 +1,11 @@
+## 2026-05-10 — Run 96 — No new release (v2026.5.7 already processed)
+
+**Checked**: v2026.5.7 == last-release → no new stable release upstream (v2026.5.9-beta.1 exists but skipped — pre-release). Exit after queue drain.
+
+**Step 0 WeChat queue drain**: 10 items attempted (v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6, v2026.5.7) — all FAILED HTTP 403 Forbidden (appsecret 40125 outage ongoing). Queue: 10 → 10 (unchanged).
+
+---
+
 ## 2026-05-10 — Run 95 — No new release (v2026.5.7 already processed)
 
 **Checked**: v2026.5.7 == last-release → no new stable release upstream. Exit after queue drain.
@@ -76,7 +84,7 @@
 ## Run: 2026-05-07 (ninth run)
 - **Last release**: v2026.5.6 (unchanged)
 - **Latest upstream stable**: v2026.5.6 (no new release detected) — GitHub API rate-limited; confirmed via HTML scrape of releases page
-- **Step 0 WeChat queue drain**: 9 items attempted (v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6), all failed HTTP 403 error code 1010 (appsecret 40125 outage ongoing)
+- **Step 0 WeChat queue drain**: 9 items attempted (v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6), all failed HTTP 403 error code 1010 (appsecret 40125 outage + CF IP block ongoing)
 - **Queue size**: 9 → 9 (unchanged)
 - **Action**: No blog/template changes; exiting after queue drain
 

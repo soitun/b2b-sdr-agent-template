@@ -1,8 +1,33 @@
 #!/bin/bash
 # B2B SDR Agent — One-Line Installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/iPythoning/b2b-sdr-agent-template/main/install.sh | bash
-# Or:    curl -fsSL https://raw.githubusercontent.com/iPythoning/b2b-sdr-agent-template/main/install.sh | bash -s -- --managed
+# Usage:
+#   curl -fsSL https://raw.githubusercontent.com/iPythoning/b2b-sdr-agent-template/main/install.sh | bash
+#   curl -fsSL .../install.sh | bash -s -- --self-hosted   # skip menu, free self-hosted
+#   curl -fsSL .../install.sh | bash -s -- --managed       # skip menu, managed (paid)
 set -euo pipefail
+
+# When piped through `curl ... | bash`, stdin is the script body, so plain `read`
+# returns EOF immediately. Try to re-attach stdin to the real terminal so the user
+# can pick the free path. If /dev/tty isn't usable (CI, container), stay headless.
+HAVE_TTY=0
+if [ -t 0 ]; then
+  HAVE_TTY=1
+elif { exec 0</dev/tty; } 2>/dev/null; then
+  HAVE_TTY=1
+fi
+
+prompt() {
+  # Usage: prompt VAR "Question: " [default]
+  local __var="$1" __msg="$2" __default="${3:-}"
+  local __reply=""
+  if [ "$HAVE_TTY" = "1" ]; then
+    read -r -p "$__msg" __reply || __reply=""
+  fi
+  if [ -z "$__reply" ] && [ -n "$__default" ]; then
+    __reply="$__default"
+  fi
+  printf -v "$__var" '%s' "$__reply"
+}
 
 VERSION_TAG="${SDR_VERSION:-latest}"
 REPO="iPythoning/b2b-sdr-agent-template"
@@ -169,7 +194,7 @@ selfhosted_path() {
     cp deploy/config.sh.example deploy/config.sh
   fi
 
-  read -p "  Server IP/hostname: " SERVER_HOST
+  prompt SERVER_HOST "  Server IP/hostname: "
   if [ -z "$SERVER_HOST" ]; then
     echo ""
     echo -e "${YELLOW}No server? No problem.${NC} PulseAgent manages everything for you:"
@@ -179,10 +204,9 @@ selfhosted_path() {
     exit 0
   fi
 
-  read -p "  SSH user [root]: " SERVER_USER
-  SERVER_USER="${SERVER_USER:-root}"
+  prompt SERVER_USER "  SSH user [root]: " "root"
 
-  read -p "  AI API Key (DeepSeek recommended — \$0.14/M input, 1M context): " API_KEY
+  prompt API_KEY "  AI API Key (DeepSeek recommended — \$0.14/M input, 1M context): "
   if [ -z "$API_KEY" ]; then
     echo ""
     echo -e "${YELLOW}No API key?${NC} PulseAgent includes AI credits — no key needed:"
@@ -192,20 +216,11 @@ selfhosted_path() {
     exit 0
   fi
 
-  read -p "  AI Provider [deepseek]: " PROVIDER
-  PROVIDER="${PROVIDER:-deepseek}"
-
-  read -p "  Model ID [deepseek-v4-flash]: " MODEL_ID
-  MODEL_ID="${MODEL_ID:-deepseek-v4-flash}"
-
-  read -p "  Enable WhatsApp? [Y/n]: " WA_ENABLED
-  WA_ENABLED="${WA_ENABLED:-Y}"
-
-  read -p "  Enable Telegram? [y/N]: " TG_ENABLED
-  TG_ENABLED="${TG_ENABLED:-N}"
-
-  read -p "  Company name: " COMPANY_NAME
-  COMPANY_NAME="${COMPANY_NAME:-my-company}"
+  prompt PROVIDER "  AI Provider [deepseek]: " "deepseek"
+  prompt MODEL_ID "  Model ID [deepseek-v4-flash]: " "deepseek-v4-flash"
+  prompt WA_ENABLED "  Enable WhatsApp? [Y/n]: " "Y"
+  prompt TG_ENABLED "  Enable Telegram? [y/N]: " "N"
+  prompt COMPANY_NAME "  Company name [my-company]: " "my-company"
 
   # Write config
   if [ -f deploy/config.sh ]; then
@@ -263,24 +278,25 @@ selfhosted_path() {
 
 banner
 
-# --managed flag: skip straight to managed path
-if [[ "${1:-}" == "--managed" || "${1:-}" == "--pro" || "${1:-}" == "--cloud" ]]; then
-  managed_path
-fi
+# Flag shortcuts: skip menu, go straight to chosen path
+case "${1:-}" in
+  --managed|--pro|--cloud)        managed_path ;;
+  --self-hosted|--selfhosted|--free|--community) selfhosted_path ;;
+esac
 
 show_comparison
 
 echo -e "${BOLD}Which path? ${NC}"
-echo -e "  ${BOLD}[1]${NC} ☁️  ${GREEN}Managed on PulseAgent${NC} — 2 min setup, free trial ${DIM}(recommended)${NC}"
-echo -e "  ${BOLD}[2]${NC} 🔧 Self-hosted — requires server + API key + ~30 min"
+echo -e "  ${BOLD}[1]${NC} 🔧 ${GREEN}Self-hosted (Free)${NC} — requires server + API key + ~30 min ${DIM}(default)${NC}"
+echo -e "  ${BOLD}[2]${NC} ☁️  Managed on PulseAgent — 2 min setup, free trial then paid"
 echo ""
-read -p "  Enter 1 or 2: " choice
+prompt choice "  Enter 1 or 2 [1]: " "1"
 
 case "${choice}" in
-  1|"") managed_path ;;
-  2) selfhosted_path ;;
+  1|"") selfhosted_path ;;
+  2)    managed_path ;;
   *)
-    echo -e "${RED}Invalid choice.${NC} Defaulting to managed..."
-    managed_path
+    echo -e "${RED}Invalid choice.${NC} Defaulting to self-hosted..."
+    selfhosted_path
     ;;
 esac

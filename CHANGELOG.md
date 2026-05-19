@@ -8,6 +8,25 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-18 — OpenClaw v2026.5.18
+
+### Improvements
+
+- **Android/Voice**: Talk Mode now routes through realtime Gateway relay voice sessions — streaming mic input and realtime audio playback on Android, matching desktop quality. Upstream: v2026.5.18
+- **Telegram/Routing**: Topic IDs preserved across requester-agent handoff — group forum conversations stay correctly threaded during lead qualification handoffs. Upstream: v2026.5.18
+- **Telegram/Commands**: `/btw` and read-only commands no longer abort active agent runs. Upstream: v2026.5.18
+- **Telegram/Transport**: HTTP 421 Misdirected Request retried on fallback transport — better delivery reliability on carrier-NAT and flaky mobile networks. Upstream: v2026.5.18
+- **Telegram/Forum**: Forum-topic origin preserved in delivery contexts — replies land in the correct topic thread. Upstream: v2026.5.18
+- **Skills**: Codex closeout review renamed to `autoreview`; meme-maker skill added with template search and rendering; Python pdb/remote-attach and Node inspector debugging skills added; spike workflow skill added. Upstream: v2026.5.18
+- **Browser**: Pending and recently handled modal dialogs surfaced in snapshots; `blockedByDialog` status added; `browser dialog --dialog-id` command for programmatic dialog handling — unblocks cookie-consent/login modal stalls in lead-capture flows. Upstream: v2026.5.18
+- **Image**: Sharp image processing with fallback chain to sips/ImageMagick/ffmpeg; image metadata probing no longer invokes external decoders unnecessarily. Upstream: v2026.5.18
+- **Security**: HTTPS managed forward-proxy endpoints with scoped CA trust supported — fixes SSL errors behind corporate proxies. Upstream: v2026.5.18
+- **Security**: Trusted admin HTTP RPC clients can now initiate WhatsApp QR login flows — enables headless channel provisioning without a physically present device. Upstream: v2026.5.18
+- **Config**: Per-agent code-mode config applied in schema and runtime catalog; ignored `timeoutMs` keys removed from agent-model config. Upstream: v2026.5.18
+- **Infrastructure**: `OPENCLAW_IMAGE_APT_PACKAGES` Docker/Podman build argument added for custom apt packages; Pi packages upgraded to 0.75.1, Node.js minimum raised to 22.19. Upstream: v2026.5.18
+- **Mac**: Settings pages redesigned with consistent card layouts; Dashboard/Chat/Canvas Dock shortcuts added; improved Gateway connection settings and sidebar visibility. Upstream: v2026.5.18
+- **Providers**: Updated support for OpenAI, Google Gemini, xAI, Xiaomi (MiMo), Together, Anthropic, GitHub Copilot, and Moonshot/Kimi. Upstream: v2026.5.18
+
 ## 2026-05-14 — OpenClaw v2026.5.12
 
 ### Improvements

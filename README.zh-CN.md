@@ -8,7 +8,7 @@
 
 > 🚀 **最新 · 2026-05-20** — **OpenClaw v2026.5.19**：`--global` 全局技能标志（全节点共享技能）、Docker Python包支持（`OPENCLAW_IMAGE_PIP_PACKAGES`）、浏览器URL白名单强制执行、企业级QA一致性测试，以及 150+ 项跨渠道修复（WhatsApp文档交付、Telegram话题隔离、Slack去重）。[查看完整更新日志 →](./CHANGELOG.md)
 
-> 📦 **附加模块 · 2026-05-22** — **[WhatsApp 老号接入规范 v0.4](./whatsapp-old-account-onboarding/docs/README.zh-CN.md)** *（备份提取器）*：一键 `bootstrap.sh` 现在直接在脚本里解 iOS / Android 备份——不用再 iMazing 或 adb 来回切。三层架构（MemOS + sales_playbook + conversation_history）、A/B/C 交付决策树、严格自动接入闸。[Release 说明 →](https://github.com/iPythoning/b2b-sdr-agent-template/releases/tag/whatsapp-onboarding-v0.4)
+> 📦 **附加模块 · 2026-05-22** — **[WhatsApp 老号接入规范 v0.5](./whatsapp-old-account-onboarding/docs/README.zh-CN.md)** *（Path D — Multi-Device 同步）*：摩擦最小的历史获取路径——客户扫一次 QR，等 Multi-Device 同步，`bootstrap.sh` 直接从 PulseAgent 拉 .txt。无备份、无密码、无 USB。v0.4 备份提取仍是零停机租户的默认。三层架构（MemOS + sales_playbook + conversation_history）、A/B/C/D 交付决策树、严格自动接入闸。[Release 说明 →](https://github.com/iPythoning/b2b-sdr-agent-template/releases/tag/whatsapp-onboarding-v0.5)
 
 **🌐 [English](./README.md) | 中文 | [Español](./README.es.md) | [Français](./README.fr.md) | [العربية](./README.ar.md) | [Português](./README.pt-BR.md) | [日本語](./README.ja.md) | [Русский](./README.ru.md)**
 

@@ -8,6 +8,41 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-21 — WhatsApp Legacy Account Onboarding Spec v0.1
+
+First-party spec for porting years of accumulated WhatsApp B2B sales
+conversations into AI-Agent-ready memory + style + history. Not an upstream
+OpenClaw cherry-pick — independent template extension.
+
+### Added
+
+- **whatsapp-old-account-onboarding/scripts/whatsapp-export-parser.py**:
+  iOS+Android dual-format parser for WhatsApp `.txt` exports. One-way PII
+  redaction via salted SHA-256, 24h-gap session segmentation, media reference
+  normalization.
+- **whatsapp-old-account-onboarding/scripts/customer-profile-extractor.py**:
+  Batch customer-profile extractor running Claude Haiku 4.5. Outputs YAML
+  suitable for MemOS upsert. Strict auto-onboard gate
+  (`red_flags` present / `relationship_score < 6` / `unfinished_commitments > 2`
+  → manual review queue).
+- **docs/README.md**: 8-step delivery SOP from export through shadow →
+  whitelist → graduated rollout.
+- **docs/OpenClaw-knowledge-base-import.md**: KB ingestion design for
+  `sales_playbook` (cross-customer style) and `conversation_history`
+  (per-customer, hard-isolated by `customer_hash`).
+- **docs/system-prompt-template.md**: Production system prompt with three
+  legacy-account identity strategies (transparent / soft / impersonation)
+  and five pre-launch verification cases.
+- **samples/example-customer-profile.yaml**: Reference MemOS document shape.
+
+### Notes
+
+- Layer A (MemOS) / Layer B (`sales_playbook`) / Layer C (`conversation_history`)
+  are independent — Layer A alone delivers ~60% of the value if you want to
+  ship in a week.
+- Runtime wiring into PulseAgent / OpenClaw MemOS and KB endpoints is left
+  as a placeholder; see `bulk-embed.py` and MemOS upsert curl in README.
+
 ## 2026-05-20 — OpenClaw v2026.5.19
 
 ### Improvements

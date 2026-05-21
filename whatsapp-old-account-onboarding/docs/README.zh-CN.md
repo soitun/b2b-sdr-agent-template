@@ -23,7 +23,7 @@
 python --version
 
 # 2. 依赖
-pip install anthropic pyyaml
+pip install -r whatsapp-old-account-onboarding/scripts/requirements.txt
 
 # 3. 凭据
 export ANTHROPIC_API_KEY="sk-ant-..."

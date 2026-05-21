@@ -34,7 +34,7 @@ Generic LLM + system prompt can't do this. You need three layers.
 
 ```bash
 python --version          # 3.11+
-pip install anthropic pyyaml
+pip install -r whatsapp-old-account-onboarding/scripts/requirements.txt
 export ANTHROPIC_API_KEY="sk-ant-..."
 
 # One-way PII hashing salt — back this up to a password manager.

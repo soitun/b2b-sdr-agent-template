@@ -8,6 +8,40 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-21 — WhatsApp Onboarding Spec v0.3 (Layer B + Layer C scripts)
+
+Closes the remaining gap to a true end-to-end delivery: Layer B miner,
+Layer A pusher, and Layer C chunk uploader. `bootstrap.sh` now wires
+them all together so a complete run produces:
+
+  - `profiles/`               → MemOS-ready customer YAMLs
+  - `golden/`                 → Layer B segments awaiting human review
+  - `layer-c-chunks.jsonl`    → conversation history chunks for KB import
+
+### Added
+
+- **scripts/mine-golden-segments.py** — Two-pass Layer B miner:
+  pass 1 sliding-window keyword detection (EN/ZH/ES signals across five
+  tag classes), pass 2 Haiku LLM scoring + retag + tactical-move
+  extraction. Drops segments scoring < 3.
+- **scripts/memos-upsert.py** — Pushes `profiles/*.yaml` to PulseAgent
+  MemOS endpoint. Honors `_auto_onboard` gate; supports `--force`.
+  Config sources: CLI > pa-config.json > env vars.
+- **scripts/bulk-embed.py** — Chunks `parsed/*.jsonl` into KB-ready
+  records with strict `customer_hash` metadata. Two modes:
+  emit JSONL for offline import, or `--upload` to push directly to
+  `/api/kb/upsert`. Embedding stays on the PA backend by design.
+- **samples/pa-config.example.json** — Reference shape for
+  `~/.pa-config.json`.
+- **bootstrap.sh** wires mining + Layer C chunking + optional push step
+  into the standard delivery flow.
+
+### Fixed
+
+- `whatsapp-export-parser.py` MEDIA regex now strips outer `<>` around
+  `<image omitted>` / `<Media omitted>` so chunked text is clean.
+- `bulk-embed.py` removed duplicated media tag in chunk text body.
+
 ## 2026-05-21 — WhatsApp Onboarding Spec v0.2 (customer delivery kit)
 
 Turns the v0.1 spec into something a delivery engineer can actually run on

@@ -226,15 +226,23 @@ Any metric 2× baseline → pause expansion, audit prompt + samples.
 ```
 whatsapp-old-account-onboarding/
 ├── scripts/
+│   ├── bootstrap.sh                       ← one-command entry
 │   ├── whatsapp-export-parser.py
-│   └── customer-profile-extractor.py
+│   ├── customer-profile-extractor.py
+│   ├── mine-golden-segments.py            ← Layer B miner
+│   ├── memos-upsert.py                    ← Layer A push
+│   ├── bulk-embed.py                      ← Layer C chunk + push
+│   └── requirements.txt
 ├── docs/
 │   ├── README.md                          ← you are here
 │   ├── README.zh-CN.md
+│   ├── CUSTOMER-DELIVERY-GUIDE.md
+│   ├── CUSTOMER-DELIVERY-GUIDE.zh-CN.md
 │   ├── OpenClaw-knowledge-base-import.md
 │   └── system-prompt-template.md
 └── samples/
-    └── example-customer-profile.yaml
+    ├── example-customer-profile.yaml
+    └── pa-config.example.json             ← copy to ~/.pa-config.json
 ```
 
 ---

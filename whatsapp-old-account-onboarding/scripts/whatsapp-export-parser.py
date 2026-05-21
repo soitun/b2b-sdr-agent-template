@@ -38,7 +38,7 @@ PHONE_RE = re.compile(r"\+?\d[\d\s().-]{7,}\d")
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
 URL_RE = re.compile(r"https?://\S+")
 MEDIA_RE = re.compile(
-    r"(<Media omitted>|<媒体已省略>|\[图片\]|\[视频\]|\[语音\]|\[文件\]|image omitted|video omitted|audio omitted|document omitted)",
+    r"<?(?:Media omitted|媒体已省略|\[图片\]|\[视频\]|\[语音\]|\[文件\]|image omitted|video omitted|audio omitted|document omitted)>?",
     re.IGNORECASE,
 )
 
@@ -61,7 +61,7 @@ def redact(text: str) -> tuple[str, str | None]:
     media_kind = None
     m = MEDIA_RE.search(text)
     if m:
-        kind = m.group(1).lower()
+        kind = m.group(0).lower()
         if "image" in kind or "图片" in kind:
             media_kind = "image"
         elif "video" in kind or "视频" in kind:

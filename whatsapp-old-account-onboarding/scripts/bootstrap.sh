@@ -214,6 +214,44 @@ else
         --parsed "${PROJECT_DIR}/parsed" \
         --output "${PROJECT_DIR}/profiles" \
         --min-turns 20 2>&1 | tee -a "${LOG_FILE}"
+
+    say ""
+    info "Mining Layer B golden segments (sales playbook)..."
+    python3 "${SCRIPT_DIR}/mine-golden-segments.py" \
+        --parsed "${PROJECT_DIR}/parsed" \
+        --output "${PROJECT_DIR}/golden" \
+        --min-score 3 2>&1 | tee -a "${LOG_FILE}"
+
+    say ""
+    info "Chunking Layer C conversation history..."
+    python3 "${SCRIPT_DIR}/bulk-embed.py" \
+        --parsed "${PROJECT_DIR}/parsed" \
+        --output "${PROJECT_DIR}/layer-c-chunks.jsonl" 2>&1 | tee -a "${LOG_FILE}"
+fi
+
+# ---- Step 5b: optional push to PulseAgent -----------------------------------
+
+if [[ "${DELIVERY_PATH}" != "A" ]]; then
+    say ""
+    ask_choice "Push to PulseAgent now?" PUSH_NOW \
+        "No, I'll review and push later" \
+        "Yes, push profiles to MemOS + chunks to KB"
+
+    if [[ "${PUSH_NOW}" == Yes* ]]; then
+        if [[ ! -f "${HOME}/.pa-config.json" && -z "${PA_ENDPOINT:-}" ]]; then
+            warn "No ~/.pa-config.json or PA_ENDPOINT env var found."
+            ask "PulseAgent endpoint URL (e.g. https://pa.example.com)" PA_ENDPOINT
+            ask "PulseAgent API token (Bearer)" PA_TOKEN
+            ask "Tenant slug" PA_TENANT
+            export PA_ENDPOINT PA_TOKEN PA_TENANT
+        fi
+        say ""
+        info "Upserting profiles to MemOS..."
+        python3 "${SCRIPT_DIR}/memos-upsert.py" --profiles "${PROJECT_DIR}/profiles" 2>&1 | tee -a "${LOG_FILE}"
+        say ""
+        info "Uploading conversation chunks to KB..."
+        python3 "${SCRIPT_DIR}/bulk-embed.py" --parsed "${PROJECT_DIR}/parsed" --upload 2>&1 | tee -a "${LOG_FILE}"
+    fi
 fi
 
 # ---- Step 6: verification report --------------------------------------------
@@ -239,9 +277,11 @@ say "============================================================"
 ok "Bootstrap complete."
 say ""
 say "Next steps:"
-say "  1. Open ${PROJECT_DIR}/profiles/_manual_review.txt and triage."
-say "  2. Push approved profiles to MemOS (see docs/README.md Step 4)."
-say "  3. Run Layer B segment mining (docs/OpenClaw-knowledge-base-import.md)."
+say "  1. Open ${PROJECT_DIR}/profiles/_manual_review.txt and triage gated customers."
+say "  2. Manually audit ${PROJECT_DIR}/golden/*.yaml — set _human_reviewed: true on keepers."
+say "  3. If you skipped the push step, run:"
+say "       python3 scripts/memos-upsert.py --profiles profiles"
+say "       python3 scripts/bulk-embed.py   --parsed parsed --upload"
 say "  4. Configure system prompt (docs/system-prompt-template.md)."
 say "  5. Run the 5 pre-launch verification cases before going live."
 say ""

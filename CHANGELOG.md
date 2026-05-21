@@ -8,6 +8,36 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-22 — WhatsApp Onboarding Spec v0.4 (backup extractors)
+
+Removes the biggest manual step in the delivery pipeline: extracting .txt
+files from device backups. Bootstrap.sh now runs the extractors directly
+when the customer chooses the "Auto" path.
+
+### Added
+
+- **scripts/extract-ios-backup.py** — Reads an iOS encrypted local backup,
+  decrypts via `iphone_backup_decrypt`, extracts WhatsApp ChatStorage.sqlite,
+  schema-probes column names (resilient to iOS 16-18 schema drift), emits
+  one iOS-format `.txt` per 1-on-1 chat. Groups skipped by default.
+- **scripts/extract-android-backup.py** — Decrypts `msgstore.db.crypt15`
+  via `wa-crypt-tools`, joins against optional `wa.db` for proper contact
+  names, emits Android-format `.txt`. Supports both modern
+  `chat + jid` schema and legacy `chat_list` schema.
+- **scripts/requirements-extract.txt** — Optional dependency set kept
+  out of the core `requirements.txt` so Layer-A-only customers don't pay
+  for decryption native deps.
+- **bootstrap.sh** Path B/C "Auto" branch — auto-installs extraction deps,
+  asks for backup password / crypt15 key, runs the appropriate extractor
+  directly into `exports/`. Manual branch preserved as fallback.
+
+### Why this matters
+
+Without v0.4, a delivery engineer had to walk the customer through three
+external tools (iMazing for iOS, adb + wa-crypt-tools + a viewer for
+Android) just to get to `.txt`. v0.4 collapses all of that into one
+`bootstrap.sh` prompt sequence.
+
 ## 2026-05-21 — WhatsApp Onboarding Spec v0.3 (Layer B + Layer C scripts)
 
 Closes the remaining gap to a true end-to-end delivery: Layer B miner,

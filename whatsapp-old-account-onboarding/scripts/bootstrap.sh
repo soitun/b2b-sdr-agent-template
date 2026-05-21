@@ -157,32 +157,70 @@ case "${DELIVERY_PATH}" in
         ;;
     B|C)
         say ""
-        if [[ "${PHONE_OS}" == "iOS" ]]; then
-            say "    Step-by-step for iOS:"
-            say "    a) On the iPhone: WhatsApp → Settings → Chats → Chat Backup → Back Up Now"
-            say "       (toggle 'Include Videos' OFF to save 70% time)"
-            say "    b) Connect phone to this computer via USB."
-            say "    c) Open Finder (macOS Catalina+) or iTunes (older). Make an ENCRYPTED backup."
-            say "       REMEMBER THE BACKUP PASSWORD. We need it for decryption."
-            say "    d) Use iMazing or a libimobiledevice script to extract:"
-            say "       ChatStorage.sqlite + Message/Media folder"
-            say "    e) Run a WhatsApp DB → .txt exporter (e.g. WhatsApp Viewer)."
-            say "    f) Drop all generated .txt files into:"
-            say "       ${EXPORTS_DIR}"
+        ask_choice "Extraction method?" EXTRACT_METHOD \
+            "Auto (use built-in extractor — recommended)" \
+            "Manual (I already have .txt files in exports/)"
+
+        if [[ "${EXTRACT_METHOD}" == Auto* ]]; then
+            # Install extract-only deps once
+            if ! python3 -c "import iphone_backup_decrypt, wa_crypt_tools" >/dev/null 2>&1; then
+                info "Installing extraction dependencies (one-time)..."
+                python3 -m pip install -q -r "${SCRIPT_DIR}/requirements-extract.txt"
+            fi
+            ask "Owner display name to write as 'me' in exports (e.g. 'Sarah Fan')" OWNER_NAME
+
+            if [[ "${PHONE_OS}" == "iOS" ]]; then
+                say ""
+                say "    Customer steps BEFORE running extractor:"
+                say "    a) iPhone → WhatsApp → Settings → Chats → Chat Backup → Back Up Now"
+                say "       (toggle 'Include Videos' OFF)"
+                say "    b) Connect iPhone → laptop via USB"
+                say "    c) Finder (macOS) or iTunes: make an ENCRYPTED local backup"
+                say "       REMEMBER the backup password — required next."
+                say ""
+                ask "Press Enter once the encrypted backup completed..." _CONFIRM
+                ask "Backup directory (leave blank to auto-detect ~/Library/Application Support/MobileSync/Backup/*)" BACKUP_DIR
+                BACKUP_ARG=""
+                [[ -n "${BACKUP_DIR}" ]] && BACKUP_ARG="--backup-dir ${BACKUP_DIR}"
+                info "Running iOS extractor (you will be prompted for the backup password)..."
+                # shellcheck disable=SC2086
+                python3 "${SCRIPT_DIR}/extract-ios-backup.py" \
+                    ${BACKUP_ARG} \
+                    --owner-name "${OWNER_NAME}" \
+                    --output "${EXPORTS_DIR}" 2>&1 | tee -a "${LOG_FILE}"
+            else
+                say ""
+                say "    Customer steps BEFORE running extractor:"
+                say "    a) Android → WhatsApp → Settings → Chats → Chat Backup → Back Up (local)"
+                say "    b) Settings → Account → End-to-end encrypted backup → Manage → Reveal key"
+                say "       Copy the 64-character hex key (we'll paste it next)."
+                say "    c) Connect phone via USB, enable USB debugging."
+                say "    d) On this machine, pull the backup file:"
+                say "       adb pull /sdcard/Android/media/com.whatsapp/WhatsApp/Databases/msgstore.db.crypt15 ${PROJECT_DIR}/msgstore.db.crypt15"
+                say "       (Optional, for nicer contact names:"
+                say "        adb pull /data/data/com.whatsapp/databases/wa.db ${PROJECT_DIR}/wa.db)"
+                say ""
+                ask "Press Enter once msgstore.db.crypt15 is on this machine..." _CONFIRM
+                ask "Path to msgstore.db.crypt15" CRYPT15_PATH
+                ask "64-char encryption key (paste, spaces OK)" CRYPT15_KEY
+                WA_DB_ARG=""
+                if [[ -f "${PROJECT_DIR}/wa.db" ]]; then WA_DB_ARG="--wa-db ${PROJECT_DIR}/wa.db"; fi
+                info "Running Android extractor..."
+                # shellcheck disable=SC2086
+                python3 "${SCRIPT_DIR}/extract-android-backup.py" \
+                    --crypt15 "${CRYPT15_PATH}" \
+                    --key "${CRYPT15_KEY}" \
+                    ${WA_DB_ARG} \
+                    --owner-name "${OWNER_NAME}" \
+                    --output "${EXPORTS_DIR}" 2>&1 | tee -a "${LOG_FILE}"
+            fi
         else
-            say "    Step-by-step for Android:"
-            say "    a) On the phone: WhatsApp → Settings → Chats → Chat Backup → Back Up"
-            say "       (local backup is fine; Google Drive needs separate key handling)"
-            say "    b) Get the 64-char encryption key:"
-            say "       Settings → Account → End-to-end encrypted backup → Manage → Reveal key"
-            say "    c) Pull /sdcard/WhatsApp/Databases/msgstore.db.crypt15 to this computer (adb pull)"
-            say "    d) Decrypt with the key (use https://github.com/ElDavoo/wa-crypt-tools)"
-            say "    e) Convert decrypted SQLite → per-chat .txt (use whatsapp-viewer-pro or wa-export)"
-            say "    f) Drop all generated .txt files into:"
+            say ""
+            say "    Drop all .txt files into:"
             say "       ${EXPORTS_DIR}"
+            say ""
+            ask "Press Enter once .txt files are in ${EXPORTS_DIR}..." _CONFIRM
         fi
-        say ""
-        ask "Press Enter once .txt files are in ${EXPORTS_DIR}..." _CONFIRM
         ;;
 esac
 

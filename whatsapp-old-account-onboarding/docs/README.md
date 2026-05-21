@@ -229,10 +229,13 @@ whatsapp-old-account-onboarding/
 │   ├── bootstrap.sh                       ← one-command entry
 │   ├── whatsapp-export-parser.py
 │   ├── customer-profile-extractor.py
+│   ├── extract-ios-backup.py              ← iOS encrypted backup → .txt
+│   ├── extract-android-backup.py          ← Android crypt15 → .txt
 │   ├── mine-golden-segments.py            ← Layer B miner
 │   ├── memos-upsert.py                    ← Layer A push
 │   ├── bulk-embed.py                      ← Layer C chunk + push
-│   └── requirements.txt
+│   ├── requirements.txt
+│   └── requirements-extract.txt           ← optional, extraction-only deps
 ├── docs/
 │   ├── README.md                          ← you are here
 │   ├── README.zh-CN.md

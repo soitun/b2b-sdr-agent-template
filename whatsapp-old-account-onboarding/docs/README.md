@@ -5,6 +5,26 @@ Turn years of accumulated WhatsApp B2B sales conversations into an AI Agent's
 without losing the relationships or the deals already in flight.
 
 > 中文版见 [README.zh-CN.md](README.zh-CN.md).
+>
+> **Delivering this to a paying customer?** Read
+> [CUSTOMER-DELIVERY-GUIDE.md](CUSTOMER-DELIVERY-GUIDE.md) first
+> ([中文](CUSTOMER-DELIVERY-GUIDE.zh-CN.md)) — it covers expectation
+> alignment, the A/B/C delivery decision tree, and the `bootstrap.sh`
+> one-command flow.
+
+## Fastest path — one command
+
+```bash
+cd whatsapp-old-account-onboarding
+bash scripts/bootstrap.sh
+```
+
+The bootstrap script asks the customer scenario questions, generates a salt,
+walks them through extraction, runs the pipeline, and emits a verification
+report. Re-runnable — picks up from `.bootstrap-state` on interrupt.
+
+If you prefer to step through manually, the rest of this document covers
+each stage in detail.
 
 ---
 

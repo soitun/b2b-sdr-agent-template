@@ -3,6 +3,21 @@
 把多年积累的 WhatsApp 销售对话转化成 AI Agent 的"客户档案 + 风格库 + 历史记忆"。
 
 > 适用场景：你已经在 WhatsApp 个人/商业号上跑了几个月到几年的外贸销售，现在想用 OpenClaw / PulseAgent 接管日常回复，但不能丢掉对老客户的记忆和你本人的销售风格。
+>
+> **要交付给付费客户？** 先看 [CUSTOMER-DELIVERY-GUIDE.zh-CN.md](CUSTOMER-DELIVERY-GUIDE.zh-CN.md)
+> — 含期望对齐话术、A/B/C 交付决策树、`bootstrap.sh` 一键流程、报价参考。
+
+## 最快路径 — 一条命令
+
+```bash
+cd whatsapp-old-account-onboarding
+bash scripts/bootstrap.sh
+```
+
+Bootstrap 脚本会问客户场景、生成盐、引导提取、跑流水线、输出验证报告。
+可重入——中断重跑会从 `.bootstrap-state` 继续。
+
+下面是分步骤的详细 SOP，需要手动控制时用。
 
 ---
 

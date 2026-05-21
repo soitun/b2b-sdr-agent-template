@@ -8,6 +8,34 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-21 — WhatsApp Onboarding Spec v0.2 (customer delivery kit)
+
+Turns the v0.1 spec into something a delivery engineer can actually run on
+a paying customer in one afternoon.
+
+### Added
+
+- **whatsapp-old-account-onboarding/scripts/bootstrap.sh**: Interactive
+  bootstrap that detects the environment, generates a PII salt, asks the
+  customer-scenario questions (Business API vs Business App vs personal;
+  iOS vs Android), walks through the extraction path, runs parser +
+  extractor, and prints a verification report. Re-runnable via
+  `.bootstrap-state`.
+- **docs/CUSTOMER-DELIVERY-GUIDE.md** + **.zh-CN.md**: Customer-delivery
+  decision tree (paths A / B.iOS / B.Android / C), explicit expectation-
+  alignment script for the kick-off call ("Business API has zero history"),
+  per-customer deliverables checklist, and pricing reference points.
+- Bootstrap entry block added at the top of `docs/README.md` and
+  `docs/README.zh-CN.md` so the one-command path is the first thing
+  delivery staff see.
+
+### Why this matters
+
+The most common pre-sales misconception is "we'll just hook up WhatsApp and
+the AI reads all my history". That's never true on Meta's official surface
+area. v0.2 makes that limitation visible in three places (sales script,
+kick-off doc, bootstrap output) so it never becomes a contract dispute.
+
 ## 2026-05-21 — WhatsApp Legacy Account Onboarding Spec v0.1
 
 First-party spec for porting years of accumulated WhatsApp B2B sales

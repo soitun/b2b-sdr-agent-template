@@ -514,3 +514,11 @@ Items: v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v
 - ZH: https://pulseagent.io/zh/blog/openclaw-v2026-5-20-discord-voice-policy-plugin-xai-oauth (created, postId: c53acfff-1343-4ab1-a4e3-98a95952a5c3)
 
 **Step 5 WeChat**: WeChat API error 40125 invalid appsecret — outage ongoing. v2026.5.20 enqueued. Queue: 13 → 14.
+
+---
+
+## Run: 2026-05-22
+
+**Step 0 WeChat Queue Drain**: All 14 queued versions (v2026.4.25 → v2026.5.20) still failing with HTTP 403 — appsecret 40125 outage ongoing. Queue unchanged: 14 → 14.
+
+**Step 1 Release Check**: Latest stable = v2026.5.20, last-release = v2026.5.20. **No new release.** Exiting early.

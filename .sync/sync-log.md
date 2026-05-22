@@ -522,3 +522,10 @@ Items: v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v
 **Step 0 WeChat Queue Drain**: All 14 queued versions (v2026.4.25 → v2026.5.20) still failing with HTTP 403 — appsecret 40125 outage ongoing. Queue unchanged: 14 → 14.
 
 **Step 1 Release Check**: Latest stable = v2026.5.20, last-release = v2026.5.20. **No new release.** Exiting early.
+
+## Run 2026-05-22T11:09:36Z
+- **Release check**: No new release. Current: v2026.5.20 (unchanged)
+- **Step 0 WeChat queue drain**: All 14 attempts failed — HTTP 403 Forbidden (appsecret outage ongoing)
+  - Queue: v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6, v2026.5.7, v2026.5.12, v2026.5.18, v2026.5.19, v2026.5.20
+  - Queue size: 14 → 14 (no change)
+- **Action**: No blog publish, no template update. Queue persisted for next run.

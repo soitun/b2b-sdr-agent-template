@@ -1,3 +1,11 @@
+## 2026-05-23 — No new release (v2026.5.20 already processed)
+
+**Checked**: v2026.5.20 == last-release → no new stable release. Latest upstream stable remains v2026.5.20 (May 21). Step 0 queue drain only.
+
+**Step 0 WeChat queue drain**: 14 items attempted (v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6, v2026.5.7, v2026.5.12, v2026.5.18, v2026.5.19, v2026.5.20) — all FAILED HTTP 403 Forbidden (appsecret 40125 outage ongoing). Queue: 14 → 14 (unchanged).
+
+---
+
 ## 2026-05-20 — No new release (v2026.5.18 already processed, run #6)
 
 **Checked**: v2026.5.18 == last-release → no new stable release (upstream has v2026.5.19-alpha.1, v2026.5.19-beta.1, v2026.5.19-beta.2 — all pre-release, skipped). Step 0 queue drain only.

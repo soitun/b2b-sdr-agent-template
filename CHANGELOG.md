@@ -8,6 +8,29 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-24 — OpenClaw v2026.5.22 upstream sync
+
+Upstream: [openclaw/openclaw v2026.5.22](https://github.com/openclaw/openclaw/releases/tag/v2026.5.22) — 140+ contributors.
+
+### Upstream highlights (cherry-picked for SDR deployments)
+
+- **4,100× gateway performance**: Pre-warmed provider auth-state map slashes `/models` latency from ~20s → ~5ms. Cold-start lag that caused first-message delays in high-load deployments is gone.
+- **Meeting Notes Plugin**: New source-only plugin with SDK source-provider contract. Supports auto-start capture, manual transcript imports, read-only CLI, and Discord voice as the first live source — sets the stage for meeting-aware SDR follow-ups.
+- **Claude 4.x model migration**: 1M-context handling migrated to GA-capable Claude 4.x models; retired Groq, GitHub Copilot, OpenAI, xAI, and old Claude catalog entries pruned; existing configs auto-upgraded.
+- **Embedding providers API**: General `embeddingProviders` capability contract and registration API landed — unlocks custom vector-search backends for memory/RAG in SDR workflows.
+- **Sub-agent context hardening**: Default sub-agent bootstrap context scoped to `AGENTS.md` + `TOOLS.md` only (reduces prompt bleed in multi-agent SDR pipelines).
+- **Windows installer**: Portable Git, Node.js, and pnpm now fully bootstrapped — enterprise Windows deployments no longer require pre-installed toolchain.
+- **Docker**: Pre-created workspace/config mount points with `node` ownership; Gateway bearer token no longer printed in setup logs (security fix).
+- Fix: Telegram markdown table mode preserved through outbound chunking (no more garbled tables in Telegram reports).
+- Fix: Local media from Telegram `sendMessage` actions now sent instead of dropped.
+- Fix: Telegram message replays deduplicated by chat/message identity.
+- Fix: Slack reasoning payloads suppressed before reply delivery.
+- Fix: Shared-secret bearer callers can now read/stream session history without scope header.
+- Fix: `pathPrepend` entries preserved ahead of shell startup `PATH` changes.
+- Fix: Denied exec approvals treated as terminal (no more ghost follow-up tool calls).
+- Fix: Context budget shown in session status when fresh usage unavailable.
+- Fix: Secrets apply now shows irreversible-action warning before confirmation.
+
 ## 2026-05-21 — OpenClaw v2026.5.20 upstream sync
 
 Upstream: [openclaw/openclaw v2026.5.20](https://github.com/openclaw/openclaw/releases/tag/v2026.5.20) — 39 contributors.

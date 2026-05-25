@@ -126,7 +126,7 @@ That's it. Your AI SDR is live on WhatsApp and ready to sell.
 ### Full-Pipeline Sales Automation (10 Stages)
 
 | Stage | What the AI Does |
-|-------|-----------------|
+|-------|------------------|
 | **1. Lead Capture** | Auto-detect inbound messages (WhatsApp/Telegram/CTWA ads), create CRM records |
 | **2. BANT Qualification** | Natural conversation to assess Budget, Authority, Need, Timeline |
 | **3. CRM Entry** | Structured data capture — name, company, country, ICP score, product interest |

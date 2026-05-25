@@ -87,3 +87,9 @@
   - Queue: v2026.4.25, v2026.4.26, v2026.4.27, v2026.4.29, v2026.5.3, v2026.5.3-1, v2026.5.4, v2026.5.5, v2026.5.6, v2026.5.7, v2026.5.12, v2026.5.18, v2026.5.19, v2026.5.20, v2026.5.22
   - Queue size: 15 → 15 (no change)
 - Action: No blog publish, no template update. Queue persisted for next run.
+
+## 2026-05-25 — Hourly run
+- Latest stable: v2026.5.22 (no new release since last sync)
+- WeChat queue drain: 15 items attempted, all returned HTTP 403 (appsecret outage ongoing)
+- Queue size unchanged: 15 pending (v2026.4.25 through v2026.5.22)
+- Action: no new blog/WeChat publish; queue committed for next run

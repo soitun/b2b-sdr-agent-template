@@ -211,3 +211,18 @@
 - Step 0 WeChat drain: 16 items attempted, all returned HTTP 403 Forbidden (appsecret 40125 outage ongoing)
 - Queue size unchanged: 16 pending (v2026.4.25 through v2026.5.26)
 - Action: no new blog/WeChat publish; queue committed for next run
+
+## 2026-05-28 — OpenClaw v2026.5.27 release sync
+
+**Release**: v2026.5.26 → v2026.5.27 (May 28, 2026) — new release detected and processed.
+
+**Step 0 WeChat drain**: 16 items attempted, all returned HTTP 403 (appsecret 40125 outage ongoing). Queue unchanged at 16 before this run.
+
+**Release category**: RELEVANT — security hardening (4 layers), gateway performance (6 cache layers), Codex reliability, OpenAI-compatible embeddings, Pixverse video generation, 6-channel stability fixes.
+
+**CHANGELOG**: Updated with v2026.5.27 upstream sync entry.
+
+**Blog EN**: published → https://pulseagent.io/en/blog/openclaw-v2026-5-27-security-hardening-provider-expansion (action: created)
+**Blog ZH**: published → https://pulseagent.io/zh/blog/openclaw-v2026-5-27-security-hardening-provider-expansion (action: updated)
+
+**WeChat Step 5**: FAILED (appsecret 40125) — v2026.5.27 enqueued. Queue size: 17 (v2026.4.25 through v2026.5.27).

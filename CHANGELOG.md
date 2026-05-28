@@ -8,6 +8,21 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-28 — OpenClaw v2026.5.27 upstream sync
+
+Upstream: [openclaw/openclaw v2026.5.27](https://github.com/openclaw/openclaw/releases/tag/v2026.5.27) — 253 commits to main.
+
+### Upstream highlights (cherry-picked for SDR deployments)
+
+- **Security hardening — 4 layers**: Group prompt text kept out of the system prompt (blocks prompt injection via group messages); repeated-dot hostnames normalized (closes URL confusion attack class); side-effecting command wrappers blocked; unsafe Node.js runtime env overrides blocked — enterprise-grade hardening for multi-tenant SDR deployments.
+- **Gateway performance — 6 cache layers**: Session reads, plugin metadata fingerprints, auth env snapshots, auto-enabled plugin configs, tool-search catalogs, and stable metadata now cached on hot path — agents respond faster under load; lead enrichment and CRM lookup tools complete sooner.
+- **Codex app-server reliability**: Model resolution fixed; workspace memory routing scoped correctly (no cross-workspace bleed in multi-team deploys); client persistence improved (less task loss during outreach sequences); relay generation preserved across restarts.
+- **OpenAI-compatible embeddings**: Any OpenAI-embeddings-API-compatible provider (Ollama, Cohere, Jina, etc.) can now be registered — enables semantic lead deduplication, intent classification, and RAG-powered company research in SDR workflows.
+- **DeepInfra catalog browsing**: Full DeepInfra model catalog now browsable from model picker — access to Llama, Mistral, Qwen without manual model IDs.
+- **Pixverse video generation**: Native video generation provider — enables personalized video intro attachments for WhatsApp/LinkedIn outreach.
+- **Multi-channel stability** (Telegram, iMessage, Slack, Matrix, Discord, Google Chat): Delivery reliability fixes across all six channels — reduced dropped-message rate in multi-channel outreach.
+- **Deprecation**: Memory-specific embedding registration deprecated — migrate to general `embeddingProviders` API before next major release.
+
 ## 2026-05-27 — OpenClaw v2026.5.26 upstream sync
 
 Upstream: [openclaw/openclaw v2026.5.26](https://github.com/openclaw/openclaw/releases/tag/v2026.5.26) — 140+ contributors.

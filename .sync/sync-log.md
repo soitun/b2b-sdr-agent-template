@@ -244,3 +244,9 @@
 **Blog ZH**: published → https://pulseagent.io/zh/blog/openclaw-v2026-5-27-security-hardening-provider-expansion (action: updated)
 
 **WeChat Step 5**: FAILED (appsecret 40125) — v2026.5.27 enqueued. Queue size: 17 (v2026.4.25 through v2026.5.27).
+
+## 2026-05-29 — Hourly run
+- Latest stable: v2026.5.27 (no new release; v2026.5.28-beta.1 seen and skipped)
+- Step 0 WeChat drain: 17 items attempted, all returned HTTP 403 Forbidden (appsecret 40125 outage ongoing)
+- Queue size unchanged: 17 pending (v2026.4.25 through v2026.5.27)
+- Action: no new blog/WeChat publish; queue committed for next run

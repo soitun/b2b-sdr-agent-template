@@ -300,3 +300,10 @@
 - Step 0 WeChat queue drain: 17 items, all still returning HTTP 403 (appsecret outage ongoing)
 - Queue size unchanged: 17
 - No blog/WeChat publish triggered
+
+## 2026-05-29 (run: latest check)
+- Checked latest stable: v2026.5.27 (matches last-release v2026.5.27) → no new release
+- v2026.5.28-beta.1/2/3 skipped (pre-release)
+- Step 0 WeChat queue drain: 17 items, all HTTP 403 Forbidden (appsecret 40125 outage ongoing)
+- Queue size unchanged: 17
+- No blog/WeChat publish triggered

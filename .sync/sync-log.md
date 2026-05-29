@@ -256,3 +256,9 @@
 - Step 0 WeChat drain: 17 items attempted, all returned HTTP 403 Forbidden (appsecret 40125 outage ongoing)
 - Queue size: 17 → 17 (unchanged; v2026.4.25 through v2026.5.27)
 - Action: no new blog/WeChat publish; exiting after queue drain
+
+## 2026-05-29 — Hourly run (third)
+- Latest stable: v2026.5.27 (no new release; same as last tracked)
+- Step 0 WeChat drain: 17 items attempted, all returned HTTP 403 Forbidden (appsecret 40125 outage ongoing)
+- Queue size: 17 → 17 (unchanged; v2026.4.25 through v2026.5.27)
+- Action: no new blog/WeChat publish; exiting after queue drain

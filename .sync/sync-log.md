@@ -294,3 +294,9 @@
 ## Run: 2026-05-29 17:06 UTC
 - Release check: v2026.5.27 (latest) == v2026.5.27 (last) → no new release
 - Step 0 WeChat drain: 17 queued → 17 remaining (all HTTP 403, appsecret still broken)
+
+## 2026-05-29 (no new release)
+- Checked latest stable: v2026.5.27 (matches last-release)
+- Step 0 WeChat queue drain: 17 items, all still returning HTTP 403 (appsecret outage ongoing)
+- Queue size unchanged: 17
+- No blog/WeChat publish triggered

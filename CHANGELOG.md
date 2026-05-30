@@ -8,6 +8,27 @@ Changes sourced from upstream (openclaw/openclaw) are labeled with the originati
 
 ## [Unreleased]
 
+## 2026-05-30 — OpenClaw v2026.5.28 upstream sync
+
+Upstream: [openclaw/openclaw v2026.5.28](https://github.com/openclaw/openclaw/releases/tag/v2026.5.28) — 35 contributors.
+
+### Upstream highlights (cherry-picked for SDR deployments)
+
+- **Multi-channel session hardening — 7 platforms**: Session identities verified on outbound plugin hooks for WhatsApp, Telegram, Slack, Discord, iMessage, Matrix, and Microsoft Teams; WhatsApp profile-scoped auth directory resolution fixed — critical for multi-account deployments; Telegram callback page validation and Discord component ID enforcement tightened.
+- **Claude Opus 4.8 support**: Anthropic's latest flagship model now selectable for complex prospect research and multi-step reasoning tasks; pair with Sonnet 4.6 for cost-optimal routing in SDR workflows.
+- **Provider expansion**: Fal Krea image generation, NVIDIA model catalog, MiniMax streaming music, encrypted PDF extraction (ClawPDF), and GitHub Copilot agent runtime added.
+- **Agent/Codex runtime — 16+ stability fixes**: Subagent workspace separation enforced (no cross-workspace bleed); prompt-local hook context; timeout-based session lock release (hung sessions no longer block overnight queues); stale restart continuations prevented; tool argument repair for quoted/escaped inputs (fewer malformed CRM API calls).
+- **Performance**: Install-record caching, config parsing optimization, session-level tool catalog reuse — second and subsequent CRM/enrichment calls faster within a session.
+- **Auth hardening**: Workspace dotenv credentials no longer auto-loaded (prevents accidental leaks); OAuth/token lifetimes bounded (compliance-friendly); malformed numeric inputs rejected.
+- **iOS Pro refresh**: Pro Command, Chat, Agents, and Settings integrated; hosted push relay defaults enabled (no manual relay config for mobile sales reps); realtime Talk playback added.
+- **ClawHub & SDK**: Plugin display names and skill verification; GitHub Copilot and Tokenjuice externalized as install-on-demand (smaller base install); Workboard agent coordination tools for work handoff.
+
+### Migration notes
+
+- **WhatsApp deployments**: Review auth directory paths — profile-scoped resolution may change credential lookup location.
+- **OAuth-dependent workflows**: Token expiry is now bounded; set explicit rotation logic before upgrading.
+- **Workspace dotenv**: Any `.env` in workspace directories will no longer auto-load into agent context — audit before upgrade.
+
 ## 2026-05-28 — OpenClaw v2026.5.27 upstream sync
 
 Upstream: [openclaw/openclaw v2026.5.27](https://github.com/openclaw/openclaw/releases/tag/v2026.5.27) — 253 commits to main.

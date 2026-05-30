@@ -224,3 +224,16 @@
 - Step 0: WeChat queue drain attempted — all 17 versions still failing (HTTP 403 Forbidden, appsecret 40125 outage ongoing)
 - Queue size: 17 → 17 (v2026.4.25 through v2026.5.27)
 - No blog/WeChat publish triggered; awaiting appsecret fix for auto-drain
+
+---
+
+## 2026-05-30T(run7)
+- **New stable release detected**: v2026.5.28 (published 2026-05-30), prev: v2026.5.27
+- **Category**: RELEVANT — 7-platform session hardening, Claude Opus 4.8, 16+ agent runtime fixes, iOS Pro refresh, bounded OAuth, tool catalog reuse
+- **Step 0 WeChat drain**: 17 items attempted, all returned HTTP 403 error code 1010 (Cloudflare ASN block, same root cause as appsecret 40125 outage). Queue unchanged at 17 → 17 before new item.
+- **CHANGELOG**: Updated with v2026.5.28 upstream sync entry + migration notes
+- **Blog drafts saved**: `.sync/blog-drafts/openclaw-v2026.5.28-en.json` + `openclaw-v2026.5.28-zh.json`
+- **Blog API EN**: FAILED — HTTP 403 error code 1010 (Cloudflare ASN block)
+- **Blog API ZH**: FAILED — HTTP 403 error code 1010 (Cloudflare ASN block)
+- **WeChat Step 5**: Not attempted (blog publish failed) — v2026.5.28 enqueued. Queue size: 18 (v2026.4.25 through v2026.5.28)
+- **Note**: Blog API and WeChat API share same Cloudflare block; will auto-publish/drain when backend connectivity restores

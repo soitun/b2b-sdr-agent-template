@@ -347,3 +347,10 @@
 - Step 0: WeChat queue drain attempted — all 17 versions still failing (HTTP 403 Forbidden, appsecret 40125 outage ongoing)
 - Queue size: 17 → 17 (v2026.4.25 through v2026.5.27)
 - No blog/WeChat publish triggered; awaiting appsecret fix for auto-drain
+
+## 2026-05-30T(run5)
+- Latest stable: v2026.5.27 == last-release (v2026.5.27) → no new release
+- Note: unauthenticated GitHub API rate-limited; used WebFetch to confirm v2026.5.27 still latest stable
+- Step 0: WeChat queue drain attempted — all 17 versions still failing (HTTP 403 Forbidden, appsecret 40125 outage ongoing)
+- Queue size: 17 → 17 (v2026.4.25 through v2026.5.27)
+- No blog/WeChat publish triggered; awaiting appsecret fix for auto-drain

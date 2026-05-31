@@ -1,3 +1,12 @@
+## 2026-05-31T(run15)
+- Latest stable: v2026.5.28 == last-release (v2026.5.28) → no new release
+- Step 0: WeChat queue drain attempted — all 18 versions failed (Cloudflare 1010 — GCP egress IP blocked at edge; distinct from appsecret 40125 issue)
+- Queue size: 18 → 18 (v2026.4.25 through v2026.5.28)
+- No blog/WeChat publish triggered; no sync state change
+- Action needed: pulseagent.io backend needs Cloudflare IP allowlist or API proxied through non-GCP egress
+
+---
+
 ## 2026-05-31T(run14)
 - Latest stable: v2026.5.28 == last-release (v2026.5.28) → no new release (v2026.5.30-beta.1 visible — skipped as pre-release)
 - Step 0: WeChat queue drain attempted — all 18 versions failed (HTTP 403 Forbidden, appsecret outage ongoing)

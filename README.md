@@ -335,6 +335,9 @@ To change after deployment, edit `~/.openclaw/openclaw.json` on the server:
 
 Then restart: `systemctl --user restart openclaw-gateway`
 
+
+> 💡 **Keep your sender number alive**: aggressive outreach gets new WhatsApp numbers banned fast. Free toolkit at [PaibaoWork](https://paibaowork.com) （中文） — ban self-check, account warm-up tracker, appeal letter generator, team anti-association check.
+
 ## Deployment
 
 ### Prerequisites
